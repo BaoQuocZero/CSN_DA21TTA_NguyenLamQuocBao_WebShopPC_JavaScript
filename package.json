@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/BaoQuocZero/Node.js_Basic_Backend/issues"
   },
-  "homepage": "https://github.com/BaoQuocZero/Node.js_Basic_Backend#readme"
+  "homepage": "https://github.com/BaoQuocZero/Node.js_Basic_Backend#readme",
+  "dependencies": {
+    "express": "4.18.2"
+  }
 }
