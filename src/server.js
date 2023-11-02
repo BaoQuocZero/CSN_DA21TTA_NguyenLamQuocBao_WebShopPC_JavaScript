@@ -4,13 +4,18 @@ require('dotenv').config()
 
 console.log(">>>Check env: ", process.env);
 
-const app = express()
-const port = process.env.PORT || 8888;
+const app = express()//add express
+const port = process.env.PORT || 8888;//port => hardcore .uat .prod
 const hostname = process.env.HOST_NAME;
 
+//config template engine
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+//config static file: images, css, js
+app.use(express.static(path.join(__dirname,'public')));
+
+//khai báo route
 app.get('/', (req, res) => {
   res.send('Hello World! and nodemon')
 })
