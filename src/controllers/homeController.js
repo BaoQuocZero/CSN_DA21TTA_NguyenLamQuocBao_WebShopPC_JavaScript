@@ -14,6 +14,11 @@ const hotdanit = (req, res) => {
     res.render('sample.ejs')
 }
 
+const postCreateUser = (req, res) => {
+    console.log('>>>Check req.body', req.body)
+    res.send('Create user') 
+} 
+
 module.exports = {
-    getHomepage, getABC, hotdanit
+    getHomepage, getABC, hotdanit, postCreateUser
 }
