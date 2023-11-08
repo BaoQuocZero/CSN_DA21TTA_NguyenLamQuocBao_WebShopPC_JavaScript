@@ -43,58 +43,36 @@
 
     <div class="table-container">
         <!-- <%= JSON.stringify(listUsers) %> -->
-            <div class="title">List User</div>
-            <table>
+        <div class="title">List User</div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Action</th>
+            </tr>
+            <% listUsers.forEach(function(user, index) { %>
                 <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Action</th>
+                    <td>
+                        <%= user.id %>
+                    </td>
+                    <td>
+                        <%= user.email %>
+                    </td>
+                    <td>
+                        <%= user.name %>
+                    </td>
+                    <td>
+                        <%= user.city %>
+                    </td>
+                    <td>
+                        <a href="/update/<%= user.id %>">Edit</a>
+                        <form action="/delete-user/<%= user.id %>" method="POST"><button>Delete</button></form>
+                    </td>
                 </tr>
-
-                <!-- <% for (let i=0; i < listUsers.length; i++) { %>
-                    <tr>
-                        <td>
-                            <%= listUsers[i].id %>
-                        </td>
-                        <td>
-                            <%= listUsers[i].email %>
-                        </td>
-                        <td>
-                            <%= listUsers[i].name %>
-                        </td>
-                        <td>
-                            <%= listUsers[i].city %>
-                        </td>
-                        <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                        </td>
-                    </tr>
-                    <% } %> -->
-<!-- index là i của forEach -->
-                <% listUsers.forEach(function(user, index) { %>
-                    <tr>
-                        <td>
-                            <%= user.id %>
-                        </td>
-                        <td>
-                            <%= user.email %>
-                        </td>
-                        <td>
-                            <%= user.name %>
-                        </td>
-                        <td>
-                            <%= user.city %>
-                        </td>
-                        <td>
-                            <a href="/update/<%= user.id %>">Edit</a>
-                            <button>Delete</button>
-                        </td>
-                    </tr>
-                    <% }); %>
-            </table>
+                <% }); %>
+        </table>
     </div>
 </body>
 
