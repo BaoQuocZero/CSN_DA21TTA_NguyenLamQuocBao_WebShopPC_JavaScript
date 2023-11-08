@@ -6,7 +6,7 @@ router.get('/', (getHomepage))
 router.get('/abc', getABC)
 router.get('/hoidanit', hotdanit);
 router.get('/create', getCreatePage);
-router.get('/update', getUpdatePage);
+router.get('/update/:id', getUpdatePage);
 
 router.post('/create-user', postCreateUser)
 

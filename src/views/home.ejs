@@ -42,7 +42,7 @@
     </div>
 
     <div class="table-container">
-        <%= JSON.stringify(listUsers) %>
+        <!-- <%= JSON.stringify(listUsers) %> -->
             <div class="title">List User</div>
             <table>
                 <tr>
@@ -89,7 +89,7 @@
                             <%= user.city %>
                         </td>
                         <td>
-                            <a href="/update">Edit</a>
+                            <a href="/update/<%= user.id %>">Edit</a>
                             <button>Delete</button>
                         </td>
                     </tr>

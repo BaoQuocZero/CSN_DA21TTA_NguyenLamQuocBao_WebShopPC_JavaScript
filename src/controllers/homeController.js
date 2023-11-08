@@ -45,6 +45,7 @@ const getCreatePage = (req, res) => {
 }
 
 const getUpdatePage = (req, res) => {
+    console.log(">>> Check = ", req.params)
     res.render('edit.ejs')
 }
 
