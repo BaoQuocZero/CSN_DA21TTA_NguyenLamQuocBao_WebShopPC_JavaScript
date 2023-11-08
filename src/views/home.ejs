@@ -8,29 +8,32 @@
 </head>
 
 <style>
-    .table-container{
+    .table-container {
         padding: 15px 20px;
     }
 
-    .title{
+    .title {
         font-size: 25px;
         font-weight: 600;
         padding-bottom: 10px;
     }
 
     table {
-      border-collapse: collapse;
-      width: 100%;
+        border-collapse: collapse;
+        width: 100%;
     }
-    
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
     }
-    
-    tr:hover {background-color: #ccc;}
-    </style>
+
+    tr:hover {
+        background-color: #ccc;
+    }
+</style>
 
 <body>
     <div class="topnav">
@@ -39,35 +42,59 @@
     </div>
 
     <div class="table-container">
-        <div class="title">List User</div>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>City</th>
-            </tr>
-            <tr>
-                <td>Peter</td>
-                <td>Griffin</td>
-                <td>$100</td>
-            </tr>
-            <tr>
-                <td>Lois</td>
-                <td>Griffin</td>
-                <td>$150</td>
-            </tr>
-            <tr>
-                <td>Joe</td>
-                <td>Swanson</td>
-                <td>$300</td>
-            </tr>
-            <tr>
-                <td>Cleveland</td>
-                <td>Brown</td>
-                <td>$250</td>
-            </tr>
-        </table>
+        <%= JSON.stringify(listUsers) %>
+            <div class="title">List User</div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+
+                <!-- <% for (let i=0; i < listUsers.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= listUsers[i].id %>
+                        </td>
+                        <td>
+                            <%= listUsers[i].email %>
+                        </td>
+                        <td>
+                            <%= listUsers[i].name %>
+                        </td>
+                        <td>
+                            <%= listUsers[i].city %>
+                        </td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <% } %> -->
+<!-- index là i của forEach -->
+                <% listUsers.forEach(function(user, index) { %>
+                    <tr>
+                        <td>
+                            <%= user.id %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.city %>
+                        </td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </table>
     </div>
 </body>
 
