@@ -37,9 +37,9 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="/">Khách hàng</a>
+        <a href="/">Khách hàng</a>
         <a href="/nv">Nhân viên</a>
-        <a href="/sanpham">Sản phẩm</a>
+        <a class="active" href="/sanpham">Sản phẩm</a>
     </div>
 
     <div class="table-container">
@@ -47,36 +47,48 @@
         <table>
             <tr>
                 <th>ID</th>
-                <th>User Name</th>
-                <th>Họ tên</th>
-                <th>Địa chỉ</th>
-                <th>Thành Phố</th>
-                <th>Quốc Gia</th>
-                <th>Sđt</th>
+                <th>Tên sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Tồn kho</th>
+                <th>Chip</th>
+                <th>Main</th>
+                <th>VGA</th>
+                <th>Nhà sản xuất</th>
+                <th>Ram</th>
+                <th>Ảnh</th>
                 <th>Hành động</th>
             </tr>
-            <% listKhachHang.forEach(function(user, index) { %>
+            <% listSanPham.forEach(function(user, index) { %>
                 <tr>
                     <td>
-                        <%= user.MaKH %>
+                        <%= user.MaSP %>
                     </td>
                     <td>
-                        <%= user.UseNameKH %>
+                        <%= user.TenSP %>
                     </td>
                     <td>
-                        <%= user.HoTenKH %>
+                        <%= user.DonGiaSP %>
                     </td>
                     <td>
-                        <%= user.DiaChiKH %>
+                        <%= user.TonKhoSP %>
                     </td>
                     <td>
-                        <%= user.ThanhPhoKH %>
+                        <%= user.Chip %>
                     </td>
                     <td>
-                        <%= user.QuocGiaKH %>
+                        <%= user.Main %>
                     </td>
                     <td>
-                        <%= user.Sdt %>
+                        <%= user.VGA %>
+                    </td>
+                    <td>
+                        <%= user.NhanSanXuat %>
+                    </td>
+                    <td>
+                        <%= user.RAM %>
+                    </td>
+                    <td>
+                        <%= user.AnhSP %>
                     </td>
                     <td>
                         <a href="/update/<%= user.id %>">Edit</a>

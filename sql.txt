@@ -1,4 +1,4 @@
-﻿CREATE DATABASE ShopPC_data
+CREATE DATABASE ShopPC_data
 GO
 USE ShopPC_data;
 GO

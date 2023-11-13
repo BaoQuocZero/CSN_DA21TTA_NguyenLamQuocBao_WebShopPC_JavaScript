@@ -1,1 +1,2 @@
 docker compose -f mysql.yml -p shoppc-sql up -d
+npx create-react-app my-app

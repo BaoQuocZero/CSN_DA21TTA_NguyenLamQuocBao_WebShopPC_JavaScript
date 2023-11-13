@@ -37,46 +37,48 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="/">Khách hàng</a>
-        <a href="/nv">Nhân viên</a>
+        <a href="/">Home</a>
+        <a class="active" href="/nv">Nhân viên</a>
         <a href="/sanpham">Sản phẩm</a>
     </div>
 
     <div class="table-container">
+        <!-- <%= JSON.stringify(listNhanVien) %> -->
         <div class="title">List User</div>
         <table>
             <tr>
                 <th>ID</th>
-                <th>User Name</th>
-                <th>Họ tên</th>
+                <th>Họ</th>
+                <th>Tên</th>
                 <th>Địa chỉ</th>
                 <th>Thành Phố</th>
                 <th>Quốc Gia</th>
                 <th>Sđt</th>
+                <th>Ảnh</th>
                 <th>Hành động</th>
             </tr>
-            <% listKhachHang.forEach(function(user, index) { %>
+            <% listNhanVien.forEach(function(user, index) { %>
                 <tr>
                     <td>
-                        <%= user.MaKH %>
+                        <%= user.MaNV %>
                     </td>
                     <td>
-                        <%= user.UseNameKH %>
+                        <%= user.HoLotNV %>
                     </td>
                     <td>
-                        <%= user.HoTenKH %>
+                        <%= user.TenNV %>
                     </td>
                     <td>
-                        <%= user.DiaChiKH %>
+                        <%= user.DiaChiNV %>
                     </td>
                     <td>
-                        <%= user.ThanhPhoKH %>
+                        <%= user.ThanhPhoNV %>
                     </td>
                     <td>
-                        <%= user.QuocGiaKH %>
+                        <%= user.QuocGiaNV %>
                     </td>
                     <td>
-                        <%= user.Sdt %>
+                        <%= user.SdtNV %>
                     </td>
                     <td>
                         <a href="/update/<%= user.id %>">Edit</a>
