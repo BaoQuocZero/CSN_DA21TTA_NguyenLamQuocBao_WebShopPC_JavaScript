@@ -37,55 +37,13 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="/">Khách hàng</a>
+        <a class="active" href="/">Home</a>
+        <a href="/khachhang">Khách hàng</a>
         <a href="/nv">Nhân viên</a>
         <a href="/sanpham">Sản phẩm</a>
     </div>
 
-    <div class="table-container">
-        <div class="title">List User</div>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>User Name</th>
-                <th>Họ tên</th>
-                <th>Địa chỉ</th>
-                <th>Thành Phố</th>
-                <th>Quốc Gia</th>
-                <th>Sđt</th>
-                <th>Hành động</th>
-            </tr>
-            <% listKhachHang.forEach(function(user, index) { %>
-                <tr>
-                    <td>
-                        <%= user.MaKH %>
-                    </td>
-                    <td>
-                        <%= user.UseNameKH %>
-                    </td>
-                    <td>
-                        <%= user.HoTenKH %>
-                    </td>
-                    <td>
-                        <%= user.DiaChiKH %>
-                    </td>
-                    <td>
-                        <%= user.ThanhPhoKH %>
-                    </td>
-                    <td>
-                        <%= user.QuocGiaKH %>
-                    </td>
-                    <td>
-                        <%= user.Sdt %>
-                    </td>
-                    <td>
-                        <a href="/update/<%= user.id %>">Edit</a>
-                        <form action="/delete-user/<%= user.id %>" method="POST"><button>Delete</button></form>
-                    </td>
-                </tr>
-                <% }); %>
-        </table>
-    </div>
+
 </body>
 
 </html>

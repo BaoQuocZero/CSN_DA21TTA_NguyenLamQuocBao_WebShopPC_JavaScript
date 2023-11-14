@@ -2,8 +2,8 @@ const connection = require('../config/database');
 const { getAllUsers, getUserById, updateUserById, deleteUserById, getAllNV, getAllSP } = require('../services/CRUDservices')
 
 const getHomepage = async (req, res) => {
-    let results = await getAllUsers();
-    return res.render('home.ejs', { listKhachHang: results })
+    //let results = await getAllUsers();
+    return res.render('home.ejs')
 }
 
 const getNV = async (req, res) => {
@@ -14,6 +14,11 @@ const getNV = async (req, res) => {
 const getSP = async (req, res) => {
     let results = await getAllSP();
     return res.render('sanpham.ejs', { listSanPham: results })
+}
+
+const getKH = async (req, res) => {
+    let results = await getAllUsers();
+    return res.render('khachhang.ejs', { listKhachHang: results })
 }
 
 const postCreateUser = async (req, res) => {
@@ -63,6 +68,6 @@ const postHandlRemoveUser = async (req, res) => {
 }
 
 module.exports = {
-    getHomepage, getNV, getSP, postCreateUser, getCreatePage, getUpdatePage,
+    getHomepage, getNV, getSP, getKH, postCreateUser, getCreatePage, getUpdatePage,
     postUpdateUser, postDeleteUser, postHandlRemoveUser
 }

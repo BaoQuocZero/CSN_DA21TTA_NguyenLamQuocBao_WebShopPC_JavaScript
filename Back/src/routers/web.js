@@ -1,10 +1,11 @@
 const express = require('express');
-const { getHomepage, getNV, getSP, postCreateUser, getCreatePage, getUpdatePage, postUpdateUser,
+const { getHomepage, getNV, getSP, getKH, postCreateUser, getCreatePage, getUpdatePage, postUpdateUser,
     postDeleteUser, postHandlRemoveUser
 } = require('../controllers/homeController');
 const router = express.Router();
 
 router.get('/', (getHomepage))
+router.get('/khachhang', (getKH))
 router.get('/nv', getNV)
 router.get('/sanpham', getSP);
 router.get('/create', getCreatePage);
