@@ -15,17 +15,18 @@ class MyComponent extends React.Component {
         ]
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        alert('Click me')
-        console.log(">>>Check State input: ", this.state)
+    addNewJob = (job) => {
+        this.setState({
+            arrJobs: [...this.state.arrJobs, job]
+        })
     }
 
     render() {
-        console.log(">>>Check State: ", this.state)
         return (
             <>
-                <AddComponents />
+                <AddComponents
+                    addNewJob={this.addNewJob}
+                />
                 <ChildComponent
                     arrJobs={this.state.arrJobs} />
             </>
