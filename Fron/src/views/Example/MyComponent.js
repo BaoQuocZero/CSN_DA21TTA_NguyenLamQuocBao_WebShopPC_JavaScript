@@ -3,6 +3,14 @@ import ChildComponent from "./ChildComponent";
 import AddComponents from "./AddComponents";
 
 class MyComponent extends React.Component {
+
+    componentDidUpdate = (prevProps, prevState) => {
+        console.log(">>> run didupdate: ", 'prevState', prevState, ' current state: ', this.state)
+    }
+
+    componentDidMount = () => {
+        console.log(">>> run components did mount")
+    }
     /*
     JFX => return 1 block hay 1 div
     Nếu muốn nhiều hơn 1 div ta dùng <> div1 div2 </>
