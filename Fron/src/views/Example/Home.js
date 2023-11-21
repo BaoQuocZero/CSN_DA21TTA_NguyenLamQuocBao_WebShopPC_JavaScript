@@ -14,6 +14,7 @@ class Home extends React.Component {
     }
 
     handleCreateUser = () => {
+        console.log("Adding new user...");
         this.props.addUserRedux()
     }
 
@@ -46,7 +47,7 @@ class Home extends React.Component {
 // export default withRouter(Home);
 const mapStateToProp = (state) => {
     return {
-        dataRedux: state.user
+        dataRedux: state.user,
     }
 }
 
