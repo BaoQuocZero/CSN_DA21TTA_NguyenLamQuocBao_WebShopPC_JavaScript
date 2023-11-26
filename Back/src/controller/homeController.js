@@ -27,7 +27,6 @@ let getEditPage = async (req, res) => {
 }
 
 let postUpdateSanPham = async (req, res) => {
-    console.log(">>> Check: ", req.body)
     let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
 
     await pool.execute(`
@@ -44,14 +43,6 @@ let deleteSanPham = async (req, res) => {
         [MaSP]);
     return res.redirect('/')
 }
-
-// let createNewUser = async (req, res) => {
-//     let { firstName, lastName, email, address } = req.body;
-//     await pool.execute(`
-//     INSERT INTO user (firstName , lastName, email, address) VALUES (?, ?, ?, ?)`,
-//         [firstName, lastName, email, address]);
-//     return res.redirect('/')
-// }
 
 module.exports = {
     getHomePage, getThemSanPhamPage, themSanPham, getEditPage, postUpdateSanPham, deleteSanPham

@@ -6,8 +6,8 @@ import MyComponent from './Example/MyComponent';
 import ListTodo from './Todos/ListTodo';
 import Nav from './Nav/Nav';
 import Home from './Example/Home';
-import ListUser from './Users/ListUser';
-import DetailUser from './Users/DetailUser';
+import ListSanPham from './SanPham/ListSanPham';
+import DetailUser from './SanPham/DetailUser';
 
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
@@ -44,7 +44,7 @@ function App() {
               <MyComponent />
             </Route>
             <Route path="/user" exact>
-              <ListUser />
+              <ListSanPham />
             </Route>
             <Route path="/user/:id">
               <DetailUser />
