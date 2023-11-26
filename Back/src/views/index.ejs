@@ -10,10 +10,8 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <a class="active" href="/">Sản phẩm</a>
+        <a href="/Trang-them-san-pham">News</a>
     </div>
 
     <div style="padding-left:16px">
@@ -24,37 +22,61 @@
                 <thead>
                     <tr class="w3-light-grey">
                         <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Actions</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Thể loại</th>
+                        <th>Đơn giá</th>
+                        <th>Tồn kho</th>
+                        <th>Chip</th>
+                        <th>Main</th>
+                        <th>VGA</th>
+                        <th>Nhà sản xuất</th>
+                        <th>Ram</th>
+                        <th>Ảnh</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% for(let i=0; i < dataUser.length; i++) { %>
+                    <% for(let i=0; i < SanPham.length; i++) { %>
                         <tr>
                             <td>
-                                <%= dataUser[i].id %>
+                                <%= SanPham[i].MaSP %>
                             </td>
                             <td>
-                                <%= dataUser[i].firstName %>
+                                <%= SanPham[i].TenSP %>
                             </td>
                             <td>
-                                <%= dataUser[i].lastName %>
+                                <%= SanPham[i].MaTL %>
                             </td>
                             <td>
-
-                                <form action="">
-                                    <button type="button">
-                                        <a href="/detail/user/<%= dataUser[i].id %>">Detail</a>
-                                    </button>
-                                </form>
-
-                                <form action="/edit-user/<%= dataUser[i].id %>" method="GET">
+                                <%= SanPham[i].DonGiaSP %>
+                            </td>
+                            <td>
+                                <%= SanPham[i].TonKhoSP %>
+                            </td>
+                            <td>
+                                <%= SanPham[i].Chip %>
+                            </td>
+                            <td>
+                                <%= SanPham[i].Main %>
+                            </td>
+                            <td>
+                                <%= SanPham[i].VGA %>
+                            </td>
+                            <td>
+                                <%= SanPham[i].NhanSanXuat %>
+                            </td>
+                            <td>
+                                <%= SanPham[i].RAM %>
+                            </td>
+                            <td>
+                                <%= SanPham[i].AnhSP %>
+                            </td>
+                            <td>
+                                <form action="/edit/<%= SanPham[i].MaSP %>" method="GET">
                                     <button type="submit">Edit</button>
                                 </form>
 
-                                <form action="/delete-user" method="POST">
-                                    <input type="text" hidden value="<%= dataUser[i].id %>" name="userId">
+                                <form action="/delete" method="POST">
+                                    <input type="text" hidden value="<%= SanPham[i].MaSP %>" name="MaSP">
                                     <button type="submit">Delete</button>
                                 </form>
                             </td>
@@ -64,30 +86,6 @@
             </table>
         </div>
 
-        <div class="create-user-container">
-            <form action="/create-new-user" method="POST">
-                <div><b>Create a new user:</b></div>
-                <div>
-                    <label for="">First name:</label>
-                    <input type="text" name="firstName" />
-                </div>
-                <div>
-                    <label for="">Last name:</label>
-                    <input type="text" name="lastName" />
-                </div>
-                <div>
-                    <label for="">Email:</label>
-                    <input type="email" name="email" />
-                </div>
-                <div>
-                    <label for="">Address:</label>
-                    <input type="text" name="address" />
-                </div>
-                <div>
-                    <button type="submit" class="btnSubmit">Submit</button>
-                </div>
-            </form>
-        </div>
     </div>
 </body>
 

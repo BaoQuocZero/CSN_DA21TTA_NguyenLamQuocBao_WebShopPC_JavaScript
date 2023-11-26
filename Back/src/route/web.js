@@ -5,17 +5,19 @@ let router = express.Router()
 
 const initWebRoute = (app) => {
     router.get('/', homeController.getHomePage);
-    router.get('/detail/user/:id', homeController.getDetailPage);
-    router.get('/edit-user/:id', homeController.getEditPage);
+    router.get('/Trang-them-san-pham', homeController.getThemSanPhamPage);
+    router.get('/edit/:id', homeController.getEditPage);
 
-    router.post('/create-new-user', homeController.createNewUser)
-    router.post('/delete-user', homeController.deleteUser)
-    router.post('/update-user', homeController.postUpdateUser)
+    router.post('/Them-san-pham', homeController.themSanPham)
+    router.post('/update-sanpham', homeController.postUpdateSanPham)
+    router.post('/delete', homeController.deleteSanPham)
 
 
-    router.get('/about', (req, res) => {
-        res.send(`I'm Eric`)
-    })
+    // router.get('/detail/user/:id', homeController.getDetailPage);
+    // router.get('/edit-user/:id', homeController.getEditPage);
+
+    // router.post('/create-new-user', homeController.createNewUser)
+
     return app.use('/', router)
 }
 
