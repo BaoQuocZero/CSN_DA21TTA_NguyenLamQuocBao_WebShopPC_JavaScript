@@ -9,6 +9,25 @@ let getAllSanPham = async (req, res) => {
     })
 }
 
+let createNewUser = async (req, res) => {
+    let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
+
+    if (!MaSP || !TenSP || !MaTL || !DonGiaSP || !TonKhoSP || !Chip || !Main || !VGA || !NhanSanXuat || !RAM || !AnhSP) {
+        return res.status(200).json({
+            message: "missing create",
+        })
+    }
+
+    await pool.execute(`    
+    INSERT INTO SanPham(TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP) 
+    VALUES 
+    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP]);
+    return res.status(200).json({
+        message: "ok",
+    })
+}
+
 let updateSanPham = async (req, res) => {
     let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
 
@@ -27,6 +46,24 @@ let updateSanPham = async (req, res) => {
     })
 }
 
+let deleteUser = async (req, res) => {
+    let { MaSP } = req.body;
+
+    if (!MaSP) {
+        return res.status(200).json({
+            message: "missing delete",
+        })
+    }
+
+    await pool.execute(`
+    DELETE FROM SanPham
+    WHERE MaSP = ?`,
+        [MaSP]);
+    return res.status(200).json({
+        message: "ok",
+    })
+}
+
 module.exports = {
-    getAllSanPham, updateSanPham
+    getAllSanPham, createNewUser, updateSanPham, deleteUser
 }

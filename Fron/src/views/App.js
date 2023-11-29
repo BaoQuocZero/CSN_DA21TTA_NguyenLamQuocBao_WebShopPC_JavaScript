@@ -29,9 +29,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header className="App-header">
+        <header>
           <Nav />
-          <img src={logo} className="App-logo" alt="logo" />
 
           <Switch>
             <Route path="/" exact>
