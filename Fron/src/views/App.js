@@ -5,7 +5,7 @@ import './App.scss';
 import MyComponent from './Example/MyComponent';
 import ListTodo from './Todos/ListTodo';
 import Nav from './Nav/Nav';
-import Home from './Example/Home';
+import Home from './HomePage/Home';
 import ListSanPham from './SanPham/ListSanPham';
 import DetailUser from './SanPham/DetailUser';
 
@@ -30,7 +30,6 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <header>
-          <Nav />
 
           <Switch>
             <Route path="/" exact>

@@ -21,6 +21,7 @@ nav ul {
 .logo {
     width: 150px;
     height: 35px;
+    cursor: pointer;
 }
 
 .logo img {
@@ -45,4 +46,32 @@ nav ul {
 .top-nav-btn:hover {
     background-color: #f2726a;
     border: #f2726a;
+}
+
+// Nút tìm kiếm ============================================================================================
+
+.search-box {
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.5s ease;
+    border-radius: 5px;
+}
+
+.search-box-btn {
+    background-color: #f5f5f5;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-box.open {
+    width: 200px;
 }

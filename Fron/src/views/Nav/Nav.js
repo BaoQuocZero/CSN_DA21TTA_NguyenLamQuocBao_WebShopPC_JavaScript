@@ -4,6 +4,9 @@ import logo from '../../assets/images/logo.gif'
 
 import './Nav.scss'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
 import {
     Link, NavLink
 } from "react-router-dom";
@@ -18,15 +21,10 @@ class Nav extends React.Component {
                             <li>
                                 <div className="logo"><img src={logo} alt="" /></div>
                             </li>
-                            <li><a href="">Trà Vinh </a><i className="fas fa-map-marker-alt"></i></li>
-                            <li><button className="top-nav-btn"> Giỏ hàng</button></li>
-                            <li><a href="">Tin tức</a></li>
-                            <li><a href="">Hỏi đáp</a></li>
-                            <li><a href="index-dev.html">Về chúng tôi</a></li>
+                            <li><button className="top-nav-btn"><a href="/cart"><FontAwesomeIcon icon={faCartShopping} className='font-awe' />Giỏ hàng</a></button></li>
                             <li>
                                 <div className="search-box">
-                                    <input className="search-box-input" type="text" placeholder="Bạn tìm gì..." />
-                                    <button className="search-box-btn"><i className="fas fa-search"></i></button>
+                                    <button className="search-box-btn"><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
                                 </div>
                             </li>
                         </ul>

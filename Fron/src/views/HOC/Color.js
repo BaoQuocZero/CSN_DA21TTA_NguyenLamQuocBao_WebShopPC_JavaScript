@@ -2,18 +2,18 @@ import React from "react";
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
-    var color = '#';
+    var backgroundColor = '#';
     for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+        backgroundColor += letters[Math.floor(Math.random() * 16)];
     }
-    return color;
+    return backgroundColor;
 }
 
 const Color = (WrappedComponent) => {
     const colorRandom = getRandomColor();
     return (props) => (
         <>
-            <div style={{ color: colorRandom }}>
+            <div style={{ backgroundColor: colorRandom }}>
                 <WrappedComponent {...props} />
             </div>
         </>
