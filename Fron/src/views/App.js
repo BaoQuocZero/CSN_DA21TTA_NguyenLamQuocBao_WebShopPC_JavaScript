@@ -4,10 +4,8 @@ import './App.scss';
 
 import MyComponent from './Example/MyComponent';
 import ListTodo from './Todos/ListTodo';
-import Nav from './Nav/Nav';
 import Home from './HomePage/Home';
 import ListSanPham from './SanPham/ListSanPham';
-import DetailUser from './SanPham/DetailUser';
 
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
@@ -41,11 +39,8 @@ function App() {
             <Route path="/about">
               <MyComponent />
             </Route>
-            <Route path="/user" exact>
+            <Route path="/sanpham">
               <ListSanPham />
-            </Route>
-            <Route path="/user/:id">
-              <DetailUser />
             </Route>
           </Switch>
 

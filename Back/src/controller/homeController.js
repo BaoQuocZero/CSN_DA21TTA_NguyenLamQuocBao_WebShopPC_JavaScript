@@ -11,11 +11,22 @@ let getThemSanPhamPage = (req, res) => {
 
 let themSanPham = async (req, res) => {
     let { TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
-    await pool.execute(`
+
+    if (req.fileValidationError) {
+        return res.status(400).json({ error: req.fileValidationError });
+    } else if (!req.file) {
+        return res.status(400).json({ error: "Please select an image to upload" });
+    }
+
+    try {
+        await pool.execute(`
     INSERT INTO SanPham (TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP]);
-    return res.redirect('/')
+            [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP]);
+        return res.redirect('/')
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
 }
 
 let getEditPage = async (req, res) => {
@@ -29,11 +40,21 @@ let getEditPage = async (req, res) => {
 let postUpdateSanPham = async (req, res) => {
     let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
 
-    await pool.execute(`
+    if (req.fileValidationError) {
+        return res.status(400).json({ error: req.fileValidationError });
+    } else if (!req.file) {
+        return res.status(400).json({ error: "Please select an image to upload" });
+    }
+
+    try {
+        await pool.execute(`
     UPDATE SanPham SET TenSP = ?, MaTL = ?, DonGiaSP=?, TonKhoSP = ?, Chip = ?, Main = ?, VGA = ?, NhanSanXuat = ?, RAM = ?, AnhSP = ? 
     WHERE MaSP = ?`,
-        [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP, MaSP]);
-    return res.redirect('/')
+            [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP, MaSP]);
+        return res.redirect('/')
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
 }
 
 let deleteSanPham = async (req, res) => {

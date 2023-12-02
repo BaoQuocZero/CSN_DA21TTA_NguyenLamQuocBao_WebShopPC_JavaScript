@@ -14,7 +14,7 @@
         <a class="active" href="">News</a>
     </div>
     <div class="create-user-container">
-        <form action="/Them-san-pham" method="POST">
+        <form action="/Them-san-pham" enctype="multipart/form-data" method="POST">
             <div><b>Tạo sản phẩm mới:</b></div>
             <div>
                 <label for="">Tên sản phẩm:</label>
@@ -54,7 +54,7 @@
             </div>
             <div>
                 <label for="">Ảnh:</label>
-                <input type="text" name="AnhSP" />
+                <input type="file" name="AnhSP" />
             </div>
             <div>
                 <button type="submit" class="btnSubmit">Submit</button>

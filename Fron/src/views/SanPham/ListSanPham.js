@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-
-import './ListUser.scss';
+import './ListSanPham.scss';
 
 class ListSanPham extends React.Component {
     state = {
@@ -20,24 +19,32 @@ class ListSanPham extends React.Component {
         }
     }
 
-    handleViewDetailUser = (sanpham) => {
-        this.props.history.push(`/user/${sanpham.id}`);
-    };
-
     render() {
         const { listSanPham } = this.state;
+        console.log(">>> check listSanPham: ", listSanPham)
+
         return (
             <>
-                <div className="list-user-container">
-                    <div className="title">Fetch all list user</div>
-                    <div className="list-user-cotent">
+                <div className="container-bottom">
+                    <div className="tieude"><h1>Sản Phẩm Nổi Bật</h1></div>
+                    <ul className="products">
                         {listSanPham && listSanPham.length > 0 &&
                             listSanPham.map((item, index) => (
-                                <div className="child" key={item.MaSP} onClick={() => this.handleViewDetailUser(item)}>
-                                    {index + 1} - {item.TenSP}
-                                </div>
+                                <li key={index}>
+                                    <div className="product-top">
+                                        <a href={`/product/${item.MaSP}`} className="product-thumb">
+                                            <img src={require(`../../assets/images/img_sp/${item.AnhSP}`).default} alt={item.TenSP} />
+                                        </a>
+                                        <a href={`/product/${item.MaSP}`} className="mua">Mua</a>
+                                    </div>
+                                    <div className="product-info">
+                                        <a href={`/product/${item.MaSP}`} className="product-TheLoai">{item.NhanSanXuat}</a>
+                                        <a href={`/product/${item.MaSP}`} className="product-name">{item.TenSP}</a>
+                                        <div className="product-price">{item.DonGiaSP.toLocaleString()} VND</div>
+                                    </div>
+                                </li>
                             ))}
-                    </div>
+                    </ul>
                 </div>
             </>
         );
