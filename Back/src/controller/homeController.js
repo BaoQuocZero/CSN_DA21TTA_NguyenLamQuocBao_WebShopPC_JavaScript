@@ -10,7 +10,7 @@ let getThemSanPhamPage = (req, res) => {
 }
 
 let themSanPham = async (req, res) => {
-    let { TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
+    let { TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM } = req.body;
 
     if (req.fileValidationError) {
         return res.status(400).json({ error: req.fileValidationError });
@@ -18,11 +18,12 @@ let themSanPham = async (req, res) => {
         return res.status(400).json({ error: "Please select an image to upload" });
     }
 
+    //console.log(">>> Check:", TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, req.file.filename)
     try {
         await pool.execute(`
     INSERT INTO SanPham (TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP]);
+            [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, req.file.filename]);
         return res.redirect('/')
     } catch (error) {
         return res.status(500).json({ error: error.message });

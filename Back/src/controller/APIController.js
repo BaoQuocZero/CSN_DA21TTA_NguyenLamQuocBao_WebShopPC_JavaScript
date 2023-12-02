@@ -4,10 +4,10 @@ let getAllSanPham = async (req, res) => {
     const [rows, fields] = await pool.execute('SELECT * FROM SanPham');
 
     // Thêm đường dẫn đầy đủ cho mỗi sản phẩm
-    const productsWithImageUrls = results.map((SanPham) => {
+    const productsWithImageUrls = rows.map((SanPham) => {
         return {
             ...SanPham,
-            imageUrl: `http://localhost:8081/api/v1/images/${SanPham.AnhSP}`,
+            imageUrl: `http://localhost:8080/api/v1/image/${SanPham.AnhSP}`,
         };
     });
 

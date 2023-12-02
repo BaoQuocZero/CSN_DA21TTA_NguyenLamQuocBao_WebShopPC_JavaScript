@@ -10,14 +10,17 @@ let router = express.Router()
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, appRoot + "/src/public/images/");
+        cb(null, appRoot + "/src/public/image/");
     },
+
+    // By default, multer removes file extensions so let's add them back
     filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+        cb(
+            null,
+            file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+        );
     },
 });
-
 
 const imageFilter = function (req, file, cb) {
     // Accept images only
@@ -28,14 +31,15 @@ const imageFilter = function (req, file, cb) {
     cb(null, true);
 };
 
+const upload = multer({ storage: storage, fileFilter: imageFilter });
+
 const initWebRoute = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/Trang-them-san-pham', homeController.getThemSanPhamPage);
     router.get('/edit/:id', homeController.getEditPage);
 
-    const upload = multer({ storage: storage, fileFilter: imageFilter });
 
-    router.post('/Them-san-pham', upload.single("AnhSP"), homeController.themSanPham)
+    router.post('/Them-san-pham', upload.single("profile_pic"), homeController.themSanPham)
     router.post('/update-sanpham', homeController.postUpdateSanPham)
     router.post('/delete', homeController.deleteSanPham)
 

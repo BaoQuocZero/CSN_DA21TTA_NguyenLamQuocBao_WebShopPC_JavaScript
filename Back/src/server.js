@@ -2,13 +2,18 @@ import express from "express"
 import configViewEngine from "./configs/viewEngine.js"
 import initWebRoute from "./route/web.js"
 import initAPIRoute from './route/api.js'
+import path from 'path';
+
 
 require('dotenv').config();
 
 const app = express()
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 
-const cors = require('cors');
+const cors = require("cors");
+app.use("/public", express.static(path.join(__dirname, "public")));
+
+// const cors = require('cors');
 app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
