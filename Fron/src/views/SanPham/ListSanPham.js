@@ -57,7 +57,7 @@ class ListSanPham extends React.Component {
                             <li key={index}>
                                 <div className="product-top">
                                     <a href={`/product/${item.MaSP}`} className="product-thumb">
-                                        <img src={`http://localhost:8080/public/image/${item.AnhSP}`} alt={item.TenSP} />
+                                        <img src={`http://localhost:8080/public/images/${item.AnhSP}`} alt={item.TenSP} />
                                     </a>
                                     <a href={`/product/${item.MaSP}`} className="mua">Mua</a>
                                 </div>

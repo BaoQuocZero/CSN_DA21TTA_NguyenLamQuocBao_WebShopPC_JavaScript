@@ -1,48 +1,88 @@
 import React from "react";
-import { withRouter } from "react-router-dom"
-import axios from "axios";
 
-class DetailUser extends React.Component {
-    state = {
-        user: {}
+import { withRouter } from "react-router-dom";
+import "./ListSanPham.css";
+
+class Itemver2 extends React.Component {
+    
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: null,
+      loading: true,
+      error: null,
+    };
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:8081/api/v1/product", {
+        method: "GET",
+        mode: "cors",
+      });
+      if (!response.ok) {
+        throw new Error("Yêu cầu không thành công");
+      }
+
+      const jsonResponse = await response.json();
+
+      this.setState({
+        data: jsonResponse.data,
+        loading: false,
+      });
+
+      console.log(jsonResponse);
+    } catch (error) {
+      console.error(error.message);
+      this.setState({
+        error: error.message,
+        loading: false,
+      });
     }
+  };
 
-    async componentDidMount() {
-        if (this.props.match && this.props.match.params) {
-            let id = this.props.match.params.id;
+  render() {
+    const { data, loading, error } = this.state;
 
-            let res = await axios.get(`https://reqres.in/api/users/${id}`)
-            this.setState({
-                user: res && res.data && res.data.data ? res.data.data : {}
-            })
-        }
-    }
-
-    handleBackButton = () => {
-        this.props.history.push("/user")
-    }
-    render() {
-        let { user } = this.state
-        let isEmptyObj = Object.keys(user).length === 0;
-
-        return (
-            <>
-                <div>
-                    Hello Detail User id: {this.props.match.params.id}
+    return (
+      <div className="container-bottom">
+        <div className="tieude">
+          <h1>Sản Phẩm Nổi Bật</h1>
+        </div>
+        <ul className="products">
+          {data &&
+            data.length > 0 &&
+            data.map((item, index) => (
+              <li key={index}>
+                <div className="product-top">
+                  <a href={`/product/${item.tensp}`} className="product-thumb">
+                    <img
+                      src={`http://localhost:8081/public/images/${item.mota}`}
+                      alt={item.TenSP}
+                    />
+                  </a>
+                  <a href={`/product/${item.tenNSX}`} className="mua">
+                    Mua
+                  </a>
                 </div>
-                {isEmptyObj === false &&
-                    <>
-                        <div>User's name: {user.first_name} - {user.last_name}</div>
-                        <div>User's email: {user.email}</div>
-                        <div>
-                            <img src={user.avatar} />
-                        </div>
-                        <button type="button" onClick={() => this.handleBackButton()}>Back</button>
-                    </>
-                }
-
-            </>
-        )
-    }
+                <div className="product-info">
+                  <a href={`/product/${item.giatien}`} className="product-TheLoai">{item.NhanSanXuat}</a>
+                                    <a href={`/product/${item.soluong}`} className="product-name">{item.TenSP}</a>
+                  <div className="product-price">
+                    {item.giatien.toLocaleString()} VND
+                  </div>
+                </div>
+              </li>
+            ))}
+        </ul>
+      </div>
+    );
+  }
 }
-export default withRouter(DetailUser);
+
+export default withRouter(Itemver2);

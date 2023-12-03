@@ -39,19 +39,19 @@ let getEditPage = async (req, res) => {
 }
 
 let postUpdateSanPham = async (req, res) => {
-    let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
+    let { TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM } = req.body;
 
     if (req.fileValidationError) {
         return res.status(400).json({ error: req.fileValidationError });
     } else if (!req.file) {
         return res.status(400).json({ error: "Please select an image to upload" });
     }
-
+    console.log(">>> check ", req.file.filename)
     try {
-        await pool.execute(`
-    UPDATE SanPham SET TenSP = ?, MaTL = ?, DonGiaSP=?, TonKhoSP = ?, Chip = ?, Main = ?, VGA = ?, NhanSanXuat = ?, RAM = ?, AnhSP = ? 
-    WHERE MaSP = ?`,
-            [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP, MaSP]);
+        //     await pool.execute(`
+        // UPDATE SanPham SET TenSP = ?, MaTL = ?, DonGiaSP=?, TonKhoSP = ?, Chip = ?, Main = ?, VGA = ?, NhanSanXuat = ?, RAM = ?, AnhSP = ? 
+        // WHERE MaSP = ?`,
+        //         [TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, req.file.filename, MaSP]);
         return res.redirect('/')
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -69,4 +69,3 @@ let deleteSanPham = async (req, res) => {
 module.exports = {
     getHomePage, getThemSanPhamPage, themSanPham, getEditPage, postUpdateSanPham, deleteSanPham
 }
-//createNewUser, deleteUser

@@ -6,6 +6,7 @@ import Color from "../HOC/Color";
 
 import Nav from "../Nav/Nav";
 import Slider from "../Slider/Slider";
+import ListSanPham from "../SanPham/ListSanPham";
 
 class Home extends React.Component {
 
@@ -14,8 +15,7 @@ class Home extends React.Component {
             <>
                 <Nav />
                 <Slider />
-
-                <div>Hello home</div>
+                <ListSanPham />
 
             </>
         )
