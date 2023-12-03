@@ -47,7 +47,7 @@ class ListSanPham extends React.Component {
 
     render() {
         const { data, loading, error } = this.state;
-        console.log("check đata", data)
+        //console.log("check đata", data)
         return (
             <div className="container-bottom">
                 <div className="tieude"><h1>Sản Phẩm Nổi Bật</h1></div>
@@ -57,7 +57,7 @@ class ListSanPham extends React.Component {
                             <li key={index}>
                                 <div className="product-top">
                                     <a href={`/product/${item.MaSP}`} className="product-thumb">
-                                        <img src={`http://localhost:8080/public/images/${item.AnhSP}`} alt={item.TenSP} />
+                                        <img src={item.imageUrl} alt={item.TenSP} />
                                     </a>
                                     <a href={`/product/${item.MaSP}`} className="mua">Mua</a>
                                 </div>
@@ -67,7 +67,8 @@ class ListSanPham extends React.Component {
                                     <div className="product-price">{item.DonGiaSP.toLocaleString()} VND</div>
                                 </div>
                             </li>
-                        ))}
+                        ))
+                    }
                 </ul>
             </div>
         );

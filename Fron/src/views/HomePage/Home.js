@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Color from "../HOC/Color";
 
 import Nav from "../Nav/Nav";
-import Slider from "../Slider/Slider";
+import Sliders from "../Slider/Sliders";
 import ListSanPham from "../SanPham/ListSanPham";
 
 class Home extends React.Component {
@@ -14,7 +14,7 @@ class Home extends React.Component {
         return (
             <>
                 <Nav />
-                <Slider />
+                <Sliders />
                 <ListSanPham />
 
             </>
@@ -22,4 +22,4 @@ class Home extends React.Component {
     }
 }
 
-export default Color(Home);
+export default Home;

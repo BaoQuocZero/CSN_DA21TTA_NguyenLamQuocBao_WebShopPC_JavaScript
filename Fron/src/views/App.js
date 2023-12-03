@@ -7,6 +7,8 @@ import ListTodo from './Todos/ListTodo';
 import Home from './HomePage/Home';
 import ListSanPham from './SanPham/ListSanPham';
 
+import Sliders from './Slider/Sliders';
+
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,14 +35,8 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/todo">
-              <ListTodo />
-            </Route>
-            <Route path="/about">
-              <MyComponent />
-            </Route>
-            <Route path="/sanpham">
-              <ListSanPham />
+            <Route path="/test">
+              <Sliders />
             </Route>
           </Switch>
 

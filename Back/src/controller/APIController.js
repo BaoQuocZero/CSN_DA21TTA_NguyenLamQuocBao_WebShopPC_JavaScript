@@ -7,7 +7,7 @@ let getAllSanPham = async (req, res) => {
     const productsWithImageUrls = rows.map((SanPham) => {
         return {
             ...SanPham,
-            imageUrl: `http://localhost:8080/api/v1/image/${SanPham.AnhSP}`,
+            imageUrl: `http://localhost:8080/public/images/${SanPham.AnhSP}`,
         };
     });
 
