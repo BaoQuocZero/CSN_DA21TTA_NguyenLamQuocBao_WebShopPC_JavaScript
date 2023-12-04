@@ -56,6 +56,7 @@ ul.products li .product-top a.mua {
 
 ul.products li:hover .product-top a.mua {
     bottom: 0px;
+    cursor: pointer;
 }
 
 ul.products li .product-top {
@@ -88,6 +89,7 @@ ul.products li .product-info {
 ul.products li .product-info a {
     display: block;
     text-decoration: none;
+    cursor: pointer;
 }
 
 ul.products li .product-info a.product-TheLoai {

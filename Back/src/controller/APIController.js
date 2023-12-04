@@ -17,6 +17,36 @@ let getAllSanPham = async (req, res) => {
     })
 }
 
+// Thêm hàm để lấy thông tin chi tiết sản phẩm theo id
+let getSanPhamById = async (req, res) => {
+    let { id } = req.params;
+
+    if (!id) {
+        return res.status(400).json({
+            error: "Bad Request",
+            message: "Thiếu thông tin id sản phẩm",
+        });
+    }
+
+    const [rows, fields] = await pool.execute('SELECT * FROM SanPham WHERE MaSP = ?', [id]);
+
+    if (rows.length === 0) {
+        return res.status(404).json({
+            message: "Không tìm thấy sản phẩm với id đã cho",
+        });
+    }
+
+    const productWithImageUrl = {
+        ...rows[0],
+        imageUrl: `http://localhost:8080/public/images/${rows[0].AnhSP}`,
+    };
+
+    return res.status(200).json({
+        message: "ok",
+        data: productWithImageUrl,
+    });
+}
+
 let createNewUser = async (req, res) => {
     let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
 
@@ -73,5 +103,5 @@ let deleteUser = async (req, res) => {
 }
 
 module.exports = {
-    getAllSanPham, createNewUser, updateSanPham, deleteUser
+    getAllSanPham, createNewUser, updateSanPham, deleteUser, getSanPhamById
 }

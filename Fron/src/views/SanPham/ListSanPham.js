@@ -1,9 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { withRouter } from "react-router-dom";
 import './ListSanPham.scss';
 
+import imageErr from '../../assets/images/Kothayanh.jpg'
+
 class ListSanPham extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -45,6 +47,12 @@ class ListSanPham extends React.Component {
         this.fetchData();
     }
 
+    handleViewSanPham = (SanPham) => {
+        const { history } = this.props;
+        console.log(">>>Check: ", history)
+        history.push(`/${SanPham.MaSP}`)
+    }
+
     render() {
         const { data, loading, error } = this.state;
         //console.log("check đata", data)
@@ -56,14 +64,20 @@ class ListSanPham extends React.Component {
                         data.map((item, index) => (
                             <li key={index}>
                                 <div className="product-top">
-                                    <a href={`/product/${item.MaSP}`} className="product-thumb">
-                                        <img src={item.imageUrl} alt={item.TenSP} />
+                                    <a onClick={() => this.handleViewSanPham(item)} className="product-thumb">
+                                        <img
+                                            src={item.imageUrl}
+                                            alt={item.TenSP}
+                                            onError={(e) => {
+                                                e.target.src = { imageErr } // Hoặc hiển thị thông báo lỗi khác
+                                            }}
+                                        />
                                     </a>
-                                    <a href={`/product/${item.MaSP}`} className="mua">Mua</a>
+                                    <a onClick={() => this.handleViewSanPham(item)} className="mua">Mua</a>
                                 </div>
                                 <div className="product-info">
-                                    <a href={`/product/${item.MaSP}`} className="product-TheLoai">{item.NhanSanXuat}</a>
-                                    <a href={`/product/${item.MaSP}`} className="product-name">{item.TenSP}</a>
+                                    <a onClick={() => this.handleViewSanPham(item)} className="product-TheLoai">{item.NhanSanXuat}</a>
+                                    <a onClick={() => this.handleViewSanPham(item)} className="product-name">{item.TenSP}</a>
                                     <div className="product-price">{item.DonGiaSP.toLocaleString()} VND</div>
                                 </div>
                             </li>

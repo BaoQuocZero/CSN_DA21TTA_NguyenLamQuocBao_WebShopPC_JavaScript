@@ -1,12 +1,7 @@
-import logo from './logo.svg';
 import './App.scss';
 
-
-import MyComponent from './Example/MyComponent';
-import ListTodo from './Todos/ListTodo';
 import Home from './HomePage/Home';
 import ListSanPham from './SanPham/ListSanPham';
-
 import Sliders from './Slider/Sliders';
 
 //Thư viện
@@ -37,6 +32,9 @@ function App() {
             </Route>
             <Route path="/test">
               <Sliders />
+            </Route>
+            <Route path="/:id">
+              <ListSanPham />
             </Route>
           </Switch>
 

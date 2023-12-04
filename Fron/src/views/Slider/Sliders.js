@@ -120,7 +120,7 @@ class Sliders extends React.Component {
                             >
                                 <div className="numbertext">{index + 1} / 5</div>
                                 <img src={item.imageUrl} style={{ width: "100%" }} alt={`Slide ${index + 1}`} />
-                                <div className="text">Caption Text</div>
+                                {/* <div className="text">Caption Text</div> */}
                             </div>
                         ))
                     }

@@ -7,6 +7,8 @@ let router = express.Router()
 const initAPIRoute = (app) => {
 
     router.get('/sanpham', APIController.getAllSanPham); //method GET -> READ data
+    router.get('/sanpham/:id', APIController.getSanPhamById);
+
     router.post('/create-user', APIController.createNewUser); //method POST -> CREATE data
     router.put('/update-sanpham', APIController.updateSanPham); //method PUT -> UPDATE data
     router.delete('/delete-user/:id', APIController.deleteUser); //method DELETE -> DELETE data
