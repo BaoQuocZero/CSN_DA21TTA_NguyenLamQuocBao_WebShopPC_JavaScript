@@ -2,6 +2,7 @@ import './App.scss';
 
 import Home from './HomePage/Home';
 import ListSanPham from './SanPham/ListSanPham';
+import ChiTietSanPham from './SanPham/ChiTietSanPham';
 import Sliders from './Slider/Sliders';
 
 //Thư viện
@@ -33,8 +34,8 @@ function App() {
             <Route path="/test">
               <Sliders />
             </Route>
-            <Route path="/:id">
-              <ListSanPham />
+            <Route path="/SanPham/:id">
+              <ChiTietSanPham />
             </Route>
           </Switch>
 

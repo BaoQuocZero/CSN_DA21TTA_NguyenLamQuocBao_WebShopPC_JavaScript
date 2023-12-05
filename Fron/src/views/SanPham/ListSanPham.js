@@ -49,13 +49,11 @@ class ListSanPham extends React.Component {
 
     handleViewSanPham = (SanPham) => {
         const { history } = this.props;
-        console.log(">>>Check: ", history)
-        history.push(`/${SanPham.MaSP}`)
+        history.push(`/SanPham/${SanPham.MaSP}`)
     }
 
     render() {
         const { data, loading, error } = this.state;
-        //console.log("check đata", data)
         return (
             <div className="container-bottom">
                 <div className="tieude"><h1>Sản Phẩm Nổi Bật</h1></div>
