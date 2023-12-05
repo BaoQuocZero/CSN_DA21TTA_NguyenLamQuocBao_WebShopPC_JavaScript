@@ -55,34 +55,38 @@ class ListSanPham extends React.Component {
     render() {
         const { data, loading, error } = this.state;
         return (
-            <div className="container-bottom">
-                <div className="tieude"><h1>Sản Phẩm Nổi Bật</h1></div>
-                <ul className="products">
-                    {data && data.length > 0 &&
-                        data.map((item, index) => (
-                            <li key={index}>
-                                <div className="product-top">
-                                    <a onClick={() => this.handleViewSanPham(item)} className="product-thumb">
-                                        <img
-                                            src={item.imageUrl}
-                                            alt={item.TenSP}
-                                            onError={(e) => {
-                                                e.target.src = { imageErr } // Hoặc hiển thị thông báo lỗi khác
-                                            }}
-                                        />
-                                    </a>
-                                    <a onClick={() => this.handleViewSanPham(item)} className="mua">Mua</a>
-                                </div>
-                                <div className="product-info">
-                                    <a onClick={() => this.handleViewSanPham(item)} className="product-TheLoai">{item.NhanSanXuat}</a>
-                                    <a onClick={() => this.handleViewSanPham(item)} className="product-name">{item.TenSP}</a>
-                                    <div className="product-price">{item.DonGiaSP.toLocaleString()} VND</div>
-                                </div>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
+            <>
+                <div className="relative">
+                    <div className="container-bottom">
+                        <div className="tieude"><h1>Sản Phẩm Nổi Bật</h1></div>
+                        <ul className="products">
+                            {data && data.length > 0 &&
+                                data.map((item, index) => (
+                                    <li key={index}>
+                                        <div className="product-top">
+                                            <a onClick={() => this.handleViewSanPham(item)} className="product-thumb">
+                                                <img
+                                                    src={item.imageUrl}
+                                                    alt={item.TenSP}
+                                                    onError={(e) => {
+                                                        e.target.src = { imageErr } // Hoặc hiển thị thông báo lỗi khác
+                                                    }}
+                                                />
+                                            </a>
+                                            <a onClick={() => this.handleViewSanPham(item)} className="mua">Mua</a>
+                                        </div>
+                                        <div className="product-info">
+                                            <a onClick={() => this.handleViewSanPham(item)} className="product-TheLoai">{item.NhanSanXuat}</a>
+                                            <a onClick={() => this.handleViewSanPham(item)} className="product-name">{item.TenSP}</a>
+                                            <div className="product-price">{item.DonGiaSP.toLocaleString()} VND</div>
+                                        </div>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </>
         );
     }
 }

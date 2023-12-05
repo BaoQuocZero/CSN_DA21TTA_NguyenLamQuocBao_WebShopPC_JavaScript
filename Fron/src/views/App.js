@@ -2,8 +2,9 @@ import './App.scss';
 
 import Home from './HomePage/Home';
 import ListSanPham from './SanPham/ListSanPham';
-import ChiTietSanPham from './SanPham/ChiTietSanPham';
+import ChiTietSanPham from './ChiTietSanPham/ChiTietSanPham';
 import Sliders from './Slider/Sliders';
+import Slider from './Slider/Slider';
 
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
@@ -32,7 +33,7 @@ function App() {
               <Home />
             </Route>
             <Route path="/test">
-              <Sliders />
+              <Slider />
             </Route>
             <Route path="/SanPham/:id">
               <ChiTietSanPham />

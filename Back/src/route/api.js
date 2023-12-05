@@ -8,6 +8,7 @@ const initAPIRoute = (app) => {
 
     router.get('/sanpham', APIController.getAllSanPham); //method GET -> READ data
     router.get('/sanpham/:id', APIController.getSanPhamById);
+    router.get('/sanpham/slider', APIController.getSanPhamSlider);
 
     router.post('/create-user', APIController.createNewUser); //method POST -> CREATE data
     router.put('/update-sanpham', APIController.updateSanPham); //method PUT -> UPDATE data

@@ -47,6 +47,35 @@ let getSanPhamById = async (req, res) => {
     });
 }
 
+let getSanPhamSlider = async (req, res) => {
+    try {
+        const [rows, fields] = await pool.execute('SELECT * FROM SanPham LIMIT 7');
+
+        if (rows.length === 0) {
+            return res.status(404).json({
+                message: "Không tìm thấy sản phẩm",
+            });
+        }
+
+        const productsWithImageUrl = rows.map(row => ({
+            ...row,
+            imageUrl: `http://localhost:8080/public/images/${row.AnhSP}`,
+        }));
+
+        return res.status(200).json({
+            message: "ok",
+            data: productsWithImageUrl,
+        });
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({
+            error: "Internal Server Error",
+            message: "Đã xảy ra lỗi khi lấy dữ liệu sản phẩm",
+        });
+    }
+};
+
+
 let createNewUser = async (req, res) => {
     let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
 
@@ -103,5 +132,5 @@ let deleteUser = async (req, res) => {
 }
 
 module.exports = {
-    getAllSanPham, createNewUser, updateSanPham, deleteUser, getSanPhamById
+    getAllSanPham, createNewUser, updateSanPham, deleteUser, getSanPhamById, getSanPhamSlider
 }

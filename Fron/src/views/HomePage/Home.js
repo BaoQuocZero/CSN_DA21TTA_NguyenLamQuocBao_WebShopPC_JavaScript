@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { connect } from 'react-redux'
 
-import Color from "../HOC/Color";
+import './HomePage.scss'
 
 import Nav from "../Nav/Nav";
-import Sliders from "../Slider/Sliders";
+import Slider from "../Slider/Slider";
 import ListSanPham from "../SanPham/ListSanPham";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -22,9 +22,12 @@ class Home extends React.Component {
     render() {
         return (
             <>
-                <Nav />
-                <Sliders />
-                <ListSanPham />
+                <div className="home-container">
+                    <Nav />
+                    <Slider />
+                    <ListSanPham />
+                    <ToastContainer />
+                </div>
 
             </>
         )

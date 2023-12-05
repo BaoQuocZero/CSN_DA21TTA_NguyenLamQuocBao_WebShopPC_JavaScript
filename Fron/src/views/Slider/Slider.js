@@ -1,120 +1,84 @@
-import React from "react";
+import React, { Component } from "react";
 import './Slider.scss';
 
-import slider1 from '../../assets/images/slider/1.jpg'
-import slider2 from '../../assets/images/slider/2.jpg'
-import slider3 from '../../assets/images/slider/3.jpg'
-import slider4 from '../../assets/images/slider/4.jpg'
-import slider5 from '../../assets/images/slider/5.jpg'
-import slider6 from '../../assets/images/slider/6.jpg'
-import slider7 from '../../assets/images/slider/7.jpg'
+// Import Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-class Slider extends React.Component {
-
-    // Khai báo slideIndex như một thuộc tính lớp
-    state = {
-        slideIndex: 1,
-    };
+class Slider extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: [],
+        };
+    }
 
     componentDidMount() {
-        // Truy cập slideIndex thông qua this.state
-        this.showSlides(this.state.slideIndex);
+        this.fetchData();
+        this.setupSliderNavigation();
     }
 
-    plusSlides = (n) => {
-        // Truy cập và cập nhật slideIndex thông qua this.state
-        this.showSlides(this.state.slideIndex + n);
-    }
+    fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/v1/sanpham");
+            if (!response.ok) {
+                throw new Error("Yêu cầu không thành công");
+            }
 
-    currentSlide = (n) => {
-        // Truy cập và cập nhật slideIndex thông qua this.state
-        this.showSlides(n);
-    }
-
-    showSlides = (n) => {
-        let { slideIndex } = this.state;
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-
-        if (n > slides.length) { n = 1; }
-        if (n < 1) { n = slides.length; }
-
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+            const jsonResponse = await response.json();
+            this.setState({
+                products: jsonResponse.data,
+            });
+        } catch (error) {
+            console.error(error.message);
         }
+    };
 
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
+    setupSliderNavigation = () => {
+        document.getElementById('next').onclick = () => {
+            let lists = document.querySelectorAll('.slide-item');
+            document.getElementById('slide').appendChild(lists[0]);
+        };
 
-        slides[n - 1].style.display = "block";
-        dots[n - 1].className += " active";
+        document.getElementById('prev').onclick = () => {
+            let lists = document.querySelectorAll('.slide-item');
+            document.getElementById('slide').prepend(lists[lists.length - 1]);
+        };
 
-        // Cập nhật slideIndex trong state
-        this.setState({ slideIndex: n });
-    }
+        // Thêm xử lý tự động chuyển slider sau mỗi khoảng thời gian
+        // setInterval(() => {
+        //     this.moveSliderNext();
+        // }, 10000);
+    };
+
+    moveSliderNext = () => {
+        let lists = document.querySelectorAll('.slide-item');
+        document.getElementById('slide').appendChild(lists[0]);
+    };
 
     render() {
+        const { products } = this.state;
         return (
             <>
-                <div className="slideshow-container">
+                <div className="slider-main">
+                    <div className="slide-container">
+                        <div id="slide">
+                            {products.map(product => (
+                                <div key={product.MaSP} className="slide-item" style={{ backgroundImage: `url(${product.imageUrl})` }}>
+                                    <div className="slide-content">
+                                        <div className="slide-name">{product.TenSP}</div>
+                                        <div className="slide-des">{product.DonGiaSP.toLocaleString()}</div>
+                                        <button>See more</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
-                    <div className="mySlides fade">
-                        <div className="numbertext">1 / 7</div>
-                        <img src={slider1} style={{ width: "100%" }} alt="Slide 1" />
-                        <div className="text">Caption Text</div>
+                        <div className="slide-button">
+                            <button id="prev"><FontAwesomeIcon icon={faChevronLeft} /></button>
+                            <button id="next"><FontAwesomeIcon icon={faChevronRight} /></button>
+                        </div>
                     </div>
-
-                    <div className="mySlides fade">
-                        <div className="numbertext">2 / 7</div>
-                        <img src={slider2} style={{ width: "100%" }} alt="Slide 2" />
-                        <div className="text">Caption Two</div>
-                    </div>
-
-                    <div className="mySlides fade">
-                        <div className="numbertext">3 / 7</div>
-                        <img src={slider3} style={{ width: "100%" }} alt="Slide 3" />
-                        <div className="text">Caption Three</div>
-                    </div>
-
-                    <div className="mySlides fade">
-                        <div className="numbertext">4 / 7</div>
-                        <img src={slider4} style={{ width: "100%" }} alt="Slide 4" />
-                        <div className="text">Caption Four</div>
-                    </div>
-
-                    <div className="mySlides fade">
-                        <div className="numbertext">5 / 7</div>
-                        <img src={slider5} style={{ width: "100%" }} alt="Slide 5" />
-                        <div className="text">Caption Five</div>
-                    </div>
-
-                    <div className="mySlides fade">
-                        <div className="numbertext">6 / 7</div>
-                        <img src={slider6} style={{ width: "100%" }} alt="Slide 6" />
-                        <div className="text">Caption Six</div>
-                    </div>
-
-                    <div className="mySlides fade">
-                        <div className="numbertext">7 / 7</div>
-                        <img src={slider7} style={{ width: "100%" }} alt="Slide 7" />
-                        <div className="text">Caption Seven</div>
-                    </div>
-
-                    <a className="prev" onClick={() => this.plusSlides(-1)}>&#10094;</a>
-                    <a className="next" onClick={() => this.plusSlides(1)}>&#10095;</a>
-                </div>
-                <br />
-
-                <div style={{ textAlign: "center" }}>
-                    <span className="dot" onClick={() => this.currentSlide(1)}></span>
-                    <span className="dot" onClick={() => this.currentSlide(2)}></span>
-                    <span className="dot" onClick={() => this.currentSlide(3)}></span>
-                    <span className="dot" onClick={() => this.currentSlide(4)}></span>
-                    <span className="dot" onClick={() => this.currentSlide(5)}></span>
-                    <span className="dot" onClick={() => this.currentSlide(6)}></span>
-                    <span className="dot" onClick={() => this.currentSlide(7)}></span>
                 </div>
             </>
         );
