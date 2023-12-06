@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import './HomePage.scss'
 
-import Nav from "../Nav/Nav";
+import Nav2 from "../Nav/Nav2";
 import Slider from "../Slider/Slider";
 import ListSanPham from "../SanPham/ListSanPham";
 
@@ -23,7 +23,7 @@ class Home extends React.Component {
         return (
             <>
                 <div className="home-container">
-                    <Nav />
+                    <Nav2 />
                     <Slider />
                     <ListSanPham />
                     <ToastContainer />

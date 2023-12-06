@@ -58,7 +58,7 @@ class ListSanPham extends React.Component {
             <>
                 <div className="relative">
                     <div className="container-bottom">
-                        <div className="tieude"><h1>Sản Phẩm Nổi Bật</h1></div>
+                        <div className="tieude"><h1>Danh Sách Sản Phẩm</h1></div>
                         <ul className="products">
                             {data && data.length > 0 &&
                                 data.map((item, index) => (

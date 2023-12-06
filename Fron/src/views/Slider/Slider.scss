@@ -94,6 +94,9 @@
     /* Căng giữa */
     display: none;
     /* ẩn hết */
+    font-weight: bold;
+    text-shadow: 4px 4px 4px white;
+    /* Offset-x, Offset-y, Độ mờ, Màu */
 }
 
 .slide-item:nth-child(2) .slide-content {
@@ -165,4 +168,25 @@
 
 .slide-button button:hover {
     background-color: #bac383;
+}
+
+.btnSeeMore_Slider {
+    background-color: #555555;
+    color: white;
+    border: 2px solid #555555;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 4px 4px 4px white;
+}
+
+.btnSeeMore_Slider:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
 }

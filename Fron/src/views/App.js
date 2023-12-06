@@ -1,10 +1,10 @@
 import './App.scss';
 
 import Home from './HomePage/Home';
-import ListSanPham from './SanPham/ListSanPham';
 import ChiTietSanPham from './ChiTietSanPham/ChiTietSanPham';
-import Sliders from './Slider/Sliders';
 import Slider from './Slider/Slider';
+
+import Nav2 from './Nav/Nav2';
 
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
@@ -32,11 +32,12 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/test">
-              <Slider />
-            </Route>
             <Route path="/SanPham/:id">
               <ChiTietSanPham />
+            </Route>
+
+            <Route path="/test">
+              <Nav2 />
             </Route>
           </Switch>
 

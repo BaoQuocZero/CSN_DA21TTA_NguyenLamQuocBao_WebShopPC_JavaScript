@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './Slider.scss';
+import { withRouter } from "react-router-dom";
 
-// Import Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,7 +27,7 @@ class Slider extends Component {
 
             const jsonResponse = await response.json();
             this.setState({
-                products: jsonResponse.data,
+                products: jsonResponse.data || [], // Handle the case when data is not available
             });
         } catch (error) {
             console.error(error.message);
@@ -35,20 +35,9 @@ class Slider extends Component {
     };
 
     setupSliderNavigation = () => {
-        document.getElementById('next').onclick = () => {
-            let lists = document.querySelectorAll('.slide-item');
-            document.getElementById('slide').appendChild(lists[0]);
-        };
-
-        document.getElementById('prev').onclick = () => {
-            let lists = document.querySelectorAll('.slide-item');
-            document.getElementById('slide').prepend(lists[lists.length - 1]);
-        };
-
-        // Thêm xử lý tự động chuyển slider sau mỗi khoảng thời gian
-        // setInterval(() => {
-        //     this.moveSliderNext();
-        // }, 10000);
+        // Use ref to get the DOM element
+        this.nextButtonRef.addEventListener('click', this.moveSliderNext);
+        this.prevButtonRef.addEventListener('click', this.moveSliderPrev);
     };
 
     moveSliderNext = () => {
@@ -56,33 +45,48 @@ class Slider extends Component {
         document.getElementById('slide').appendChild(lists[0]);
     };
 
+    moveSliderPrev = () => {
+        let lists = document.querySelectorAll('.slide-item');
+        document.getElementById('slide').prepend(lists[lists.length - 1]);
+    };
+
+    handleViewSanPham = (SanPham) => {
+        const { history } = this.props;
+
+        // Kiểm tra xem history có tồn tại không
+        if (history) {
+            history.push(`/SanPham/${SanPham.MaSP}`);
+        } else {
+            console.error("Lỗi: history không tồn tại hoặc không được truyền vào đúng cách.");
+        }
+    }
+
+
     render() {
         const { products } = this.state;
         return (
-            <>
-                <div className="slider-main">
-                    <div className="slide-container">
-                        <div id="slide">
-                            {products.map(product => (
-                                <div key={product.MaSP} className="slide-item" style={{ backgroundImage: `url(${product.imageUrl})` }}>
-                                    <div className="slide-content">
-                                        <div className="slide-name">{product.TenSP}</div>
-                                        <div className="slide-des">{product.DonGiaSP.toLocaleString()}</div>
-                                        <button>See more</button>
-                                    </div>
+            <div className="slider-main">
+                <div className="slide-container">
+                    <div id="slide">
+                        {products.map((item, index) => (
+                            <div key={item.MaSP} className="slide-item" style={{ backgroundImage: `url(${item.imageUrl || ''})` }}>
+                                <div className="slide-content">
+                                    <div className="slide-name">{item.TenSP || ''}</div>
+                                    <div className="slide-des">{item.DonGiaSP ? `${item.DonGiaSP.toLocaleString()} VNĐ` : ''}</div>
+                                    <button className="btnSeeMore_Slider" onClick={() => this.handleViewSanPham(item)}>See more</button>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
+                    </div>
 
-                        <div className="slide-button">
-                            <button id="prev"><FontAwesomeIcon icon={faChevronLeft} /></button>
-                            <button id="next"><FontAwesomeIcon icon={faChevronRight} /></button>
-                        </div>
+                    <div className="slide-button">
+                        <button ref={ref => this.prevButtonRef = ref} ><FontAwesomeIcon icon={faChevronLeft} /></button>
+                        <button ref={ref => this.nextButtonRef = ref}><FontAwesomeIcon icon={faChevronRight} /></button>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 }
 
-export default Slider;
+export default withRouter(Slider);

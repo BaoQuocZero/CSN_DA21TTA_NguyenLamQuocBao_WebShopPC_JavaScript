@@ -3,7 +3,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import './ChiTietSanPham.scss'
 
-import Nav from "../Nav/Nav";
+import Nav2 from "../Nav/Nav2";
 
 class ChiTietSanPham extends Component {
   constructor(props) {
@@ -61,7 +61,7 @@ class ChiTietSanPham extends Component {
           <p>Loading...</p>
         ) : (
           <>
-            <Nav />
+            <Nav2 />
             <div className="container_ChiTietSanPham">
               <div className="product-info_ChiTietSanPham">
                 <form className='form_ChiTietSanPham'>
