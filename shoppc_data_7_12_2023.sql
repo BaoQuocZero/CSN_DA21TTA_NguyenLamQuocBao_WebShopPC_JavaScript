@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 10:50 AM
+-- Generation Time: Dec 03, 2023 at 03:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -112,12 +112,7 @@ INSERT INTO `sanpham` (`MaSP`, `TenSP`, `MaTL`, `DonGiaSP`, `TonKhoSP`, `Chip`, 
 (25, 'Apple MacBook Air M1 256GB 2020', 2, 18990000, 10, 'M1', 'Mainboard', 'GPU 8 nhân', 'Apple', '8GB', 'profile_pic-1701606642330.png'),
 (26, 'Laptop Lenovo Ideapad Slim 5 14IAH8 83BF002NVN', 2, 14990000, 10, 'Intel Core i5-12450H', 'Mainboard', 'Intel UHD Graphics', 'Lenovo', '16GB', 'profile_pic-1701606651740.png'),
 (27, 'Laptop Dell Inspirion 15 3511 PDP3H', 2, 13490000, 10, 'Intel Core i5-1135G7', 'Mainboard', 'Intel Iris Xe Graphics', 'Lenovo', '8GB', 'profile_pic-1701606662835.png'),
-(28, 'Laptop Gaming Acer Nitro 5 Eagle AN515-57-5669', 2, 16990000, 10, 'Intel Core i5-11400H', 'Mainboard', 'NVIDIA GeForce GTX 1650 4 GB GDDR6', 'Lenovo', '8GB', 'profile_pic-1701606721645.jpg'),
-(33, 'PC WALKING DEAD DUAL GLASS', 1, 44680000, 10, 'CPU Intel Core i7 13700K', 'Mainboard Z690M AORUS ELITE DDR4', 'MSI RTX 4070Ti 12GB Ventus 3Fan', 'Shop PC', 'RAM TridentZ RGB 32GB (2x16) Bus 3600Mhz', 'profile_pic-1701874608632.webp'),
-(34, 'PC MULTI TASKING', 1, 25990000, 10, 'CPU Intel Core I7-13700 (2.10 GHz up to 5.20 GHz, 30M 16 nhân 24 luồng, Socket 1700)', 'Z690M AORUS ELITE', 'ZOTAC RTX 3060TI 8GB ', 'Shop PC', 'Team Vulcan 16Gb (2x8) Bus 3200Mhz', 'profile_pic-1701874727974.jpg'),
-(35, 'PC TTG SUPER MAX GAMING', 1, 19990000, 10, 'Intel Core I5 12400F', 'Mainboard ASUS B660M-K DDR4', 'ASUS RTX 3070TI 8GB TUF GAMING', 'Shop PC', 'Ram ADATA D50 RGB 16GB (2x8GB) DDR4 3200MHz', 'profile_pic-1701874864913.webp'),
-(36, 'PC BEST OF BEST', 1, 54168000, 10, 'Intel Core I7 13700K', 'Mainboard Z690M AORUS ELITE', 'ZOTAC RTX 4080 16Gb Infinity OC', 'Shop PC', 'ADATA D50  RGB16GB (2x8) Bus 3200Mhz', 'profile_pic-1701874988343.webp'),
-(37, 'PC TTG CSGO Valorant PUBG FIFA LOL RX550', 1, 8490000, 10, 'CPU INTEL Core I3 10105F', 'Mainboard Gigabyte H410M H DDR4', 'Radeon RX 550 4GB', 'Shop PC', 'Teamgroup Vulcan 16GB Bus 3200Mhz', 'profile_pic-1701875197623.webp');
+(28, 'Laptop Gaming Acer Nitro 5 Eagle AN515-57-5669', 2, 16990000, 10, 'Intel Core i5-11400H', 'Mainboard', 'NVIDIA GeForce GTX 1650 4 GB GDDR6', 'Lenovo', '8GB', 'profile_pic-1701606721645.jpg');
 
 -- --------------------------------------------------------
 
@@ -193,7 +188,7 @@ ALTER TABLE `hoadon`
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `theloai`
