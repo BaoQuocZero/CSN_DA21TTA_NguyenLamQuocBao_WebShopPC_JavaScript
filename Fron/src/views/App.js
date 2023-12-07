@@ -3,7 +3,7 @@ import './App.scss';
 import Home from './HomePage/Home';
 import ChiTietSanPham from './ChiTietSanPham/ChiTietSanPham';
 import MuaSanPham from './MuaSanPham/MuaSanPham';
-import HoaDonForm from './Test/Test';
+import Footer from './Footer/Footer';
 
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
@@ -39,7 +39,7 @@ function App() {
             </Route>
 
             <Route path="/Test">
-              <HoaDonForm />
+              <Footer />
             </Route>
 
           </Switch>
