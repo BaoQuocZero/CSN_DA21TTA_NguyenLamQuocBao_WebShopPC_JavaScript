@@ -4,6 +4,7 @@ import axios from 'axios';
 import { withRouter } from "react-router-dom";
 import './MuaSanPham.scss'; // Import tệp CSS
 
+import Nav2 from '../Nav/Nav2';
 
 class MuaSanPham extends Component {
 
@@ -13,6 +14,16 @@ class MuaSanPham extends Component {
             sanPham: {},  // Khởi tạo sanPham với một đối tượng trống
             soLuong: 1,
             loading: true,
+
+            MaKH: 'QuocBaoKH1',
+            MaNV: 'QuocBaoNV1',
+            DiaChiShip: '',
+            SdtShip: '',
+            GhiChu: '',
+            ChiTietHoaDon: [
+                { MaSP: 25, SoLuong: 1, GiamGia: 1 },
+                // Các mục ChiTietHoaDon khác nếu cần
+            ],
         };
     }
 
@@ -35,108 +46,176 @@ class MuaSanPham extends Component {
         }
     }
 
+    handleInputChange = (event, index) => {
+        const { name, value } = event.target;
+        const updatedChiTietHoaDon = [...this.state.ChiTietHoaDon];
+        updatedChiTietHoaDon[index][name] = value;
+
+        this.setState({ ChiTietHoaDon: updatedChiTietHoaDon });
+    };
+
+    handleAddChiTietHoaDon = (event) => {
+        event.preventDefault();
+        this.setState((prevState) => {
+            const updatedChiTietHoaDon = prevState.ChiTietHoaDon.map((item) => ({
+                ...item,
+                MaSP: prevState.sanPham.MaSP,
+                SoLuong: prevState.soLuong,
+            }));
+
+            return {
+                ChiTietHoaDon: [...updatedChiTietHoaDon, { MaSP: prevState.sanPham.MaSP, SoLuong: prevState.soLuong, GiamGia: 1 }],
+            };
+        }, () => {
+            console.log(">>>Check 1: ", this.state);
+            this.handleSubmit();
+        });
+    };
+
+
+    handleSubmit = async (event) => {
+        console.log(">>>Check: ", this.state)
+
+        // try {
+        //     const response = await fetch('http://localhost:8080/create-hoadon', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(this.state),
+        //     });
+
+        //     if (response.ok) {
+        //         const data = await response.json();
+        //         this.setState({ message: data.message });
+        //     } else {
+        //         throw new Error('Failed to create HoaDon');
+        //     }
+        // } catch (error) {
+        //     console.error('Error:', error);
+        //     this.setState({ message: 'Failed to create HoaDon' });
+        // }
+    };
+
     render() {
         const { sanPham, loading, soLuong } = this.state;
         return (
-            <div className="muahang-container">
+            <>
+                <Nav2 />
+                <form onSubmit={this.handleSubmit} id='yourFormId'>
+                    {this.state.ChiTietHoaDon.map((item, index) => (
 
-                <div className='container-setup'>
-                    <div className="muahang-giay-info">
-                        <form className="muahang-form">
-                            <h5 className='thongtinh-muahang'>Thông tin giao hàng</h5>
-                            <label className="muahang-label">
+                        <div className="muahang-container" key={index}>
+                            <div className='container-setup'>
+                                <div className="muahang-giay-info">
+                                    <div className="muahang-form">
+                                        <h5 className='thongtinh-muahang'>Thông tin giao hàng</h5>
+                                        <label className="muahang-label">
 
-                                <input
-                                    type="text"
-                                    name="name"
-                                    className="muahang-input hoten"
-                                    placeholder='Họ và tên'
-                                />
-                            </label> <br />
-                            <label className="muahang-label">
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                className="muahang-input hoten"
+                                                placeholder='Họ và tên'
+                                            />
+                                            <input
+                                                type="text"
+                                                name="SoLuong"
+                                                hidden
+                                                value={soLuong}
+                                                onChange={(e) => this.setState({ SdtShip: e.target.value })}
+                                            />
+                                        </label> <br />
+                                        <label className="muahang-label">
 
-                                <input
-                                    type="text"
-                                    name="phoneNumber"
-                                    className="muahang-input muahang-sdt"
-                                    placeholder='Số điện thoại '
-                                />
-                            </label>
-                            <label className="muahang-label">
+                                            <input
+                                                type="text"
+                                                className="muahang-input muahang-sdt"
+                                                placeholder='Số điện thoại '
+                                                name="SdtShip"
+                                                value={this.state.SdtShip}
+                                                onChange={(e) => this.setState({ SdtShip: e.target.value })}
+                                            />
+                                        </label>
+                                        <label className="muahang-label">
 
-                                <input
-                                    type="text"
-                                    name="address"
-                                    className="muahang-input muahang-sonha" placeholder='Số nhà và tên đường'
-                                />
-                            </label> <br />
-                            <label className="muahang-label">
+                                            <input
+                                                type="text"
+                                                name="DiaChiShip"
+                                                value={this.state.DiaChiShip}
+                                                onChange={(e) => this.setState({ DiaChiShip: e.target.value })}
+                                                className="muahang-input muahang-sonha" placeholder='Số nhà và tên đường'
+                                            />
+                                        </label> <br />
+                                        <label className="muahang-label">
 
-                                <input
-                                    type="text"
-                                    className="muahang-input" placeholder='Ghi chú'
-                                />
-                            </label>
-                            <p className='thanhtoan'>Hình thức thanh toán tại nhà</p>
-                        </form>
-                    </div>
+                                            <input
+                                                type="text"
+                                                className="muahang-input" placeholder='Ghi chú'
+                                                name="GhiChu"
+                                                value={this.state.GhiChu}
+                                                onChange={(e) => this.setState({ GhiChu: e.target.value })}
+                                            />
+                                        </label>
+                                        <p className='thanhtoan'>Hình thức thanh toán tại nhà</p>
+                                    </div>
+                                </div>
 
-                    <div className="muahang-customer-info">
-                        <div className='hr-xoaydoc'></div>
-                        <div className='thongtin-sanpham'>
-                            <div className='thongtin-sanpham_2'>
-                                <span className='discount-bannerr' >{soLuong}</span>
-                                <img src={sanPham.imageUrl} className='sanpham-img'></img>
+                                <div className="muahang-customer-info">
+                                    <div className='hr-xoaydoc'></div>
+                                    <div className='thongtin-sanpham'>
+                                        <div className='thongtin-sanpham_2'>
+                                            <span className='discount-bannerr' >{soLuong}</span>
+                                            <img src={sanPham.imageUrl} className='sanpham-img'></img>
 
-                                <span className='sanpham-name'>{sanPham.TenSP}</span>
-                                {sanPham.DonGiaSP ? (
-                                    <span className='sanpham-price'>{sanPham.DonGiaSP.toLocaleString()} VND</span>
-                                ) : (
-                                    <span className='sanpham-price'>Giá không xác định</span>
-                                )}
+                                            <span className='sanpham-name'>{sanPham.TenSP}</span>
+                                        </div>
+
+                                        <hr></hr>
+                                        <label className="muahang-magiamgia1">
+
+                                            <input
+                                                type="text"
+                                                name="GiamGia"
+                                                value={item.GiamGia}
+                                                onChange={(e) => this.handleInputChange(e, index)}
+                                                className="muahang-magiamhgia" placeholder='Mã giảm giá (nếu có)'
+                                            />
+                                            <button className='muahang-xacnhan'>Sử Dụng</button>
+                                        </label>
+                                        <hr></hr>
+                                        <div className='muahang-tamtinh'>  <span className='muahang-tamtinh1'>Tạm tính</span>
+
+                                            {sanPham.DonGiaSP ? (
+                                                <span className='sanpham-price'>{sanPham.DonGiaSP.toLocaleString()} VND</span>
+                                            ) : (
+                                                <span className='sanpham-price'>Giá không xác định</span>
+                                            )}
+                                        </div>
+                                        <div className='muahang-phivanchuyen'>
+                                            <span>Phí vận chuyển</span>
+                                            <span className='muahang-phivanchuyen1'>0 VND</span>
+                                        </div>
+                                        <hr></hr>
+                                        <div className='muahang-tongcong'>
+                                            <span>Tổng cộng</span>
+                                            {sanPham.DonGiaSP ? (
+                                                <span className='sanpham-price'>{sanPham.DonGiaSP.toLocaleString()} VND</span>
+                                            ) : (
+                                                <span className='sanpham-price'>Giá không xác định</span>
+                                            )}
+                                        </div>
+                                        <button type="button" className="muahang-button" onClick={(event) => this.handleAddChiTietHoaDon(event)}>
+                                            Đặt Hàng
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+                        </div >
+                    ))}
+                </form>
 
-                            <hr></hr>
-                            <label className="muahang-magiamgia1">
-
-                                <input
-                                    type="text"
-                                    name="name"
-
-
-                                    className="muahang-magiamhgia" placeholder='Mã giảm giá (nếu có)'
-                                />
-                                <button className='muahang-xacnhan'>Sử Dụng</button>
-                            </label>
-                            <hr></hr>
-                            <div className='muahang-tamtinh'>  <span className='muahang-tamtinh1'>Tạm tính</span>
-
-                                {sanPham.DonGiaSP ? (
-                                    <span className='sanpham-price'>{sanPham.DonGiaSP.toLocaleString()} VND</span>
-                                ) : (
-                                    <span className='sanpham-price'>Giá không xác định</span>
-                                )}
-                            </div>
-                            <div className='muahang-phivanchuyen'>
-                                <span>Phí vận chuyển</span>
-                                <span className='muahang-phivanchuyen1'>0 VND</span>
-                            </div>
-                            <hr></hr>
-                            <div className='muahang-tongcong'>
-                                <span>Tổng cộng</span>
-                                {sanPham.DonGiaSP ? (
-                                    <span className='sanpham-price'>{sanPham.DonGiaSP.toLocaleString()} VND</span>
-                                ) : (
-                                    <span className='sanpham-price'>Giá không xác định</span>
-                                )}
-                            </div>
-                            <button type="button" className="muahang-button">
-                                Đặt Hàng
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div >
+            </>
         );
     }
 };

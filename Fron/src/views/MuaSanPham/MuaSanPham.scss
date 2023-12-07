@@ -1,4 +1,5 @@
 .muahang-container {
+    margin-top: 50px;
     width: 100%;
     height: auto;
     justify-content: center;
@@ -128,7 +129,7 @@
 }
 
 .sanpham-name {
-    margin-left: 10%;
+    padding: 5px 5px;
     font-size: 18px;
     color: #565252;
 }
@@ -140,7 +141,7 @@
 }
 
 .sanpham-price {
-    margin-left: 10%;
+    margin-left: 5%;
     font-size: 18px;
     color: #000000;
 }
@@ -204,7 +205,7 @@
 }
 
 .muahang-phivanchuyen1 {
-    margin-left: 78%;
+    margin-left: 70%;
 }
 
 .muahang-tongcong {
@@ -236,8 +237,20 @@
     height: 40px;
     background-color: black;
     color: white;
+    font-weight: bold;
+    transition-duration: 1s;
+}
 
+.muahang-button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
 
+.muahang-xacnhan:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
 }
 
 /* Add this style to position the container relative to the image */

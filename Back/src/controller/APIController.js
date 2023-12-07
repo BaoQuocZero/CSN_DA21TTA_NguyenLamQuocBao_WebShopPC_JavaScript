@@ -75,6 +75,44 @@ let getSanPhamSlider = async (req, res) => {
     }
 };
 
+let createHoaDon = async (req, res) => {
+    let { MaKH, MaNV, DiaChiShip, ChiTietHoaDon } = req.body;
+
+    if (!MaKH || !MaNV || !DiaChiShip || !ChiTietHoaDon || ChiTietHoaDon.length === 0) {
+        return res.status(400).json({
+            message: "Missing required information for creating HoaDon",
+        });
+    }
+
+    try {
+        // Insert HoaDon
+        const [result] = await pool.execute(`
+            INSERT INTO HoaDon(MaKH, MaNV, DiaChiShip) 
+            VALUES (?, ?, ?)`,
+            [MaKH, MaNV, DiaChiShip]);
+
+        const newMaHD = result.insertId; // Get the newly generated MaHD
+
+        // Insert ChiTietHoaDon
+        for (const { MaSP, SoLuong, GiamGia } of ChiTietHoaDon) {
+            await pool.execute(`
+                INSERT INTO ChiTietHoaDon(MaHD, MaSP, SoLuong, GiamGia) 
+                VALUES (?, ?, ?, ?)`,
+                [newMaHD, MaSP, SoLuong, GiamGia]);
+        }
+
+        return res.status(200).json({
+            message: "HoaDon created successfully",
+        });
+    } catch (error) {
+        console.error('Error creating HoaDon:', error);
+        return res.status(500).json({
+            message: "Internal Server Error",
+        });
+    }
+};
+
+
 
 let createNewUser = async (req, res) => {
     let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
@@ -132,5 +170,5 @@ let deleteUser = async (req, res) => {
 }
 
 module.exports = {
-    getAllSanPham, createNewUser, updateSanPham, deleteUser, getSanPhamById, getSanPhamSlider
+    getAllSanPham, createNewUser, updateSanPham, deleteUser, getSanPhamById, getSanPhamSlider, createHoaDon
 }

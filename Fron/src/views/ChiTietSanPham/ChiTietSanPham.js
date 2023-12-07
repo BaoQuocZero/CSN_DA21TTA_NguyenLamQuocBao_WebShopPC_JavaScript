@@ -90,9 +90,9 @@ class ChiTietSanPham extends Component {
                   </div>
                   <div className='product-h3_ChiTietSanPham'>
                     <h3 className='h3_ChiTietSanPham'>{sanPham.TenSP}</h3>
-                    <p className='product-prices_ChiTietSanPham'>${sanPham.DonGiaSP.toLocaleString()}</p>
+                    <p className='product-prices_ChiTietSanPham'>{sanPham.DonGiaSP.toLocaleString()} VND</p>
                     <hr></hr>
-                    <p className='product-status_ChiTietSanPham'>
+                    <p className='Con_Het_ChiTietSanPham'>
                       {sanPham.TonKhoSP > 0 ? 'Còn hàng' : 'Hết hàng'}
                     </p>
                     <div className='SoLuongSanPham_ChiTietSanPham'>
