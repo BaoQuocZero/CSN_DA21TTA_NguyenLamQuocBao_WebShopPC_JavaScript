@@ -95,6 +95,11 @@
 
 .purchase-button_ChiTietSanPham {
     background-color: white;
+    border: 1px solid black;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
     color: black;
     width: 50%;
 
@@ -108,4 +113,17 @@
 .SoLuongSanPham_ChiTietSanPham {
     padding-top: 5px;
     padding-bottom: 15px;
+}
+
+.soLuong_ChiTietSanPham {
+    padding: 8px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%
+}
+
+.soLuong_ChiTietSanPham:hover {
+    color: white !important;
+    background-color: rgb(100, 100, 100) !important
 }

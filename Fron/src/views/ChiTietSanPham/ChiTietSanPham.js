@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './ChiTietSanPham.scss'
 
 import Nav2 from "../Nav/Nav2";
 
 class ChiTietSanPham extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,11 +34,24 @@ class ChiTietSanPham extends Component {
   }
 
   handleQuantityChange = (event) => {
-    // Xử lý thay đổi số lượng
-    this.setState({ soLuong: event.target.value });
+
+    const { sanPham } = this.state;
+    const enteredQuantity = parseInt(event.target.value, 10);
+
+    if (!isNaN(enteredQuantity)) {
+      // Nếu người dùng nhập một số hợp lệ
+      const limitedQuantity = Math.min(enteredQuantity, sanPham.TonKhoSP);
+      this.setState({ soLuong: limitedQuantity });
+    } else {
+      // Nếu người dùng nhập không phải là một số, bạn có thể xử lý tùy thuộc vào yêu cầu của bạn.
+      // Ví dụ: có thể hiển thị một thông báo lỗi hoặc không thay đổi state.
+      alert("Vược quá só lượng tồn kho !!!")
+      console.error("Please enter a valid quantity.");
+    }
+
   };
 
-  handlePurchase = () => {
+  handlePurchase = (SanPham) => {
     const { sanPham, soLuong } = this.state;
 
     if (soLuong > sanPham.TonKhoSP) {
@@ -46,10 +61,15 @@ class ChiTietSanPham extends Component {
     }
 
     // Thực hiện xử lý mua hàng với số lượng hợp lệ
-    // ...
+    const { history } = this.props;
 
-    // Ví dụ: hiển thị thông báo thành công
-    alert(`Bạn đã mua ${soLuong} sản phẩm thành công.`);
+    // Kiểm tra xem history có tồn tại không
+    if (history) {
+      history.push(`/MuaHang/${sanPham.MaSP}`);
+    } else {
+      console.error("Lỗi: history không tồn tại hoặc không được truyền vào đúng cách.");
+    }
+    // alert(`Bạn đã mua ${soLuong} sản phẩm thành công.`);
   };
 
   render() {
@@ -77,7 +97,7 @@ class ChiTietSanPham extends Component {
                     </p>
                     <div className='SoLuongSanPham_ChiTietSanPham'>
                       <label htmlFor="quantity">Số lượng:</label>
-                      <input
+                      <input className="soLuong_ChiTietSanPham"
                         type="number"
                         id="quantity"
                         name="quantity"
@@ -89,9 +109,15 @@ class ChiTietSanPham extends Component {
                     <div className='product-h3_muahang_ChiTietSanPham'>
 
                       {sanPham.TonKhoSP > 0 && (
-                        <button type="button" className="purchase-button_ChiTietSanPham" onClick={this.handlePurchase}>
+                        <Link
+                          to={{
+                            pathname: `/MuaHang/${sanPham.MaSP}`,
+                            state: { soLuong: soLuong }
+                          }}
+                          className="purchase-button_ChiTietSanPham"
+                        >
                           Mua Hàng
-                        </button>
+                        </Link>
                       )}
                     </div>
                   </div>
