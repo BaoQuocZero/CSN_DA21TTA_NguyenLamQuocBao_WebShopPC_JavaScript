@@ -3,7 +3,10 @@ import './App.scss';
 import Home from './HomePage/Home';
 import ChiTietSanPham from './ChiTietSanPham/ChiTietSanPham';
 import MuaSanPham from './MuaSanPham/MuaSanPham';
-import Footer from './Footer/Footer';
+import SanPhamTatCa from './SanPhamTatCa/SanPhamTatCa';
+import SanPhamDesktop from './SanPhamDesktop/SanPhamDesktop';
+import SanPhamApple from './SanPhamApple/SanPhamApple';
+import SanPhamASUS from './SanPhamASUS/SanPhamASUS';
 
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,9 +40,17 @@ function App() {
             <Route path="/MuaHang/:id">
               <MuaSanPham />
             </Route>
-
-            <Route path="/Test">
-              <Footer />
+            <Route path="/All">
+              <SanPhamTatCa />
+            </Route>
+            <Route path="/Desktop">
+              <SanPhamDesktop />
+            </Route>
+            <Route path="/Apple">
+              <SanPhamApple />
+            </Route>
+            <Route path="/ASUS">
+              <SanPhamASUS />
             </Route>
 
           </Switch>

@@ -10,6 +10,9 @@ const initAPIRoute = (app) => {
     router.get('/sanpham', APIController.getAllSanPham); //method GET -> READ data
     router.get('/sanpham/:id', APIController.getSanPhamById);
     router.get('/sanpham/slider', APIController.getSanPhamSlider);
+    router.get('/sanphamDesktop', APIController.getSanPhamDesktop);
+    router.get('/sanphamApple', APIController.getSanPhamApple);
+    router.get('/sanphamASUS', APIController.getSanPhamASUS);
 
     router.post('/create-hoadon', APIController.createHoaDon);
 

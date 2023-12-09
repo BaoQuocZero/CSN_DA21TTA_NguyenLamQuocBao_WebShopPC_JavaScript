@@ -114,8 +114,58 @@ let createHoaDon = async (req, res) => {
     }
 };
 
+let getSanPhamDesktop = async (req, res) => {
+    const [rows, fields] = await pool.execute('SELECT * FROM SanPham WHERE NhanSanXuat LIKE ?', ['Shop PC']);
 
+    // Thêm đường dẫn đầy đủ cho mỗi sản phẩm
+    const productsWithImageUrls = rows.map((SanPham) => {
+        return {
+            ...SanPham,
+            imageUrl: `http://localhost:8080/public/images/${SanPham.AnhSP}`,
+        };
+    });
 
+    return res.status(200).json({
+        message: "ok",
+        data: productsWithImageUrls
+    })
+}
+
+let getSanPhamApple = async (req, res) => {
+    const [rows, fields] = await pool.execute('SELECT * FROM SanPham WHERE NhanSanXuat LIKE ?', ['Apple']);
+
+    // Thêm đường dẫn đầy đủ cho mỗi sản phẩm
+    const productsWithImageUrls = rows.map((SanPham) => {
+        return {
+            ...SanPham,
+            imageUrl: `http://localhost:8080/public/images/${SanPham.AnhSP}`,
+        };
+    });
+
+    return res.status(200).json({
+        message: "ok",
+        data: productsWithImageUrls
+    })
+}
+
+let getSanPhamASUS = async (req, res) => {
+    const [rows, fields] = await pool.execute('SELECT * FROM SanPham WHERE NhanSanXuat LIKE ?', ['ASUS']);
+
+    // Thêm đường dẫn đầy đủ cho mỗi sản phẩm
+    const productsWithImageUrls = rows.map((SanPham) => {
+        return {
+            ...SanPham,
+            imageUrl: `http://localhost:8080/public/images/${SanPham.AnhSP}`,
+        };
+    });
+
+    return res.status(200).json({
+        message: "ok",
+        data: productsWithImageUrls
+    })
+}
+
+//Api cũ
 let createNewUser = async (req, res) => {
     let { MaSP, TenSP, MaTL, DonGiaSP, TonKhoSP, Chip, Main, VGA, NhanSanXuat, RAM, AnhSP } = req.body;
 
@@ -172,5 +222,7 @@ let deleteUser = async (req, res) => {
 }
 
 module.exports = {
-    getAllSanPham, createNewUser, updateSanPham, deleteUser, getSanPhamById, getSanPhamSlider, createHoaDon
+    createNewUser, updateSanPham, deleteUser,
+    getAllSanPham, getSanPhamById, getSanPhamSlider, createHoaDon,
+    getSanPhamDesktop, getSanPhamApple, getSanPhamASUS
 }

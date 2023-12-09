@@ -2,10 +2,29 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGithub, faDribbble } from '@fortawesome/free-brands-svg-icons'; // Cập nhật dòng này
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons'; // Thêm dòng này
+import { withRouter } from 'react-router-dom';
 
 import './Footer.scss';
 
 class Footer extends Component {
+
+
+  handleViewDesktop = () => {
+    this.props.history.push("/Desktop");
+  };
+
+  handleViewApple = () => {
+    this.props.history.push("/Apple");
+  };
+
+  handleViewASUS = () => {
+    this.props.history.push("/ASUS");
+  };
+
+  handleViewAll = () => {
+    this.props.history.push("/All");
+  };
+
   render() {
     return (
       <footer className="site-footer_Footer">
@@ -20,10 +39,10 @@ class Footer extends Component {
             <div className="W30__Footer">
               <h6>Hãng sản xuất</h6>
               <ul className="footer-links_Footer">
-                <li><a href="http://scanfcode.com/category/c-language/">Desktop</a></li>
-                <li><a href="http://scanfcode.com/category/front-end-development/">Apple</a></li>
-                <li><a href="http://scanfcode.com/category/back-end-development/">ASUS</a></li>
-                <li><a href="http://scanfcode.com/category/java-programming-language/">Tất cả</a></li>
+                <li><a onClick={this.handleViewDesktop}>Desktop</a></li>
+                <li><a onClick={this.handleViewApple}>Apple</a></li>
+                <li><a onClick={this.handleViewASUS}>ASUS</a></li>
+                <li><a onClick={this.handleViewAll}>Tất cả</a></li>
               </ul>
             </div>
 
@@ -60,4 +79,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export default withRouter(Footer);
