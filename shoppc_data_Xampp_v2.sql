@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2023 at 08:08 AM
+-- Generation Time: Dec 07, 2023 at 10:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,9 +44,7 @@ CREATE TABLE `hoadon` (
   `MaHD` int(11) NOT NULL,
   `MaKH` varchar(255) DEFAULT NULL,
   `MaNV` varchar(255) DEFAULT NULL,
-  `DiaChiShip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SdtShip` varchar(10) DEFAULT NULL,
-  `GhiChu` text DEFAULT NULL
+  `DiaChiShip` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -62,13 +60,6 @@ CREATE TABLE `khachhang` (
   `DiaChi` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Sdt` varchar(24) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `khachhang`
---
-
-INSERT INTO `khachhang` (`MaKH`, `PassKH`, `TenLienHe`, `DiaChi`, `Sdt`) VALUES
-('QuocBaoKH1', '0000', 'Nguyễn Lâm Quốc Bảo', 'W8JX+46R, Đường D5, Phường 5, Trà Vinh, Việt Nam', '0372701722');
 
 -- --------------------------------------------------------
 
@@ -86,13 +77,6 @@ CREATE TABLE `nhanvien` (
   `AnhNV` text DEFAULT NULL,
   `GhiChu` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `nhanvien`
---
-
-INSERT INTO `nhanvien` (`MaNV`, `PassNV`, `HoLotNV`, `TenNV`, `DiaChiNV`, `SdtNV`, `AnhNV`, `GhiChu`) VALUES
-('QuocBaoNV1', '0000', 'Nguyễn Lâm Quốc', 'Bảo', 'W8JX+46R, Đường D5, Phường 5, Trà Vinh, Việt Nam', '0372701722', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -133,17 +117,7 @@ INSERT INTO `sanpham` (`MaSP`, `TenSP`, `MaTL`, `DonGiaSP`, `TonKhoSP`, `Chip`, 
 (34, 'PC MULTI TASKING', 1, 25990000, 10, 'CPU Intel Core I7-13700 (2.10 GHz up to 5.20 GHz, 30M 16 nhân 24 luồng, Socket 1700)', 'Z690M AORUS ELITE', 'ZOTAC RTX 3060TI 8GB ', 'Shop PC', 'Team Vulcan 16Gb (2x8) Bus 3200Mhz', 'profile_pic-1701874727974.jpg'),
 (35, 'PC TTG SUPER MAX GAMING', 1, 19990000, 10, 'Intel Core I5 12400F', 'Mainboard ASUS B660M-K DDR4', 'ASUS RTX 3070TI 8GB TUF GAMING', 'Shop PC', 'Ram ADATA D50 RGB 16GB (2x8GB) DDR4 3200MHz', 'profile_pic-1701874864913.webp'),
 (36, 'PC BEST OF BEST', 1, 54168000, 10, 'Intel Core I7 13700K', 'Mainboard Z690M AORUS ELITE', 'ZOTAC RTX 4080 16Gb Infinity OC', 'Shop PC', 'ADATA D50  RGB16GB (2x8) Bus 3200Mhz', 'profile_pic-1701874988343.webp'),
-(37, 'PC TTG CSGO Valorant PUBG FIFA LOL RX550', 1, 8490000, 10, 'CPU INTEL Core I3 10105F', 'Mainboard Gigabyte H410M H DDR4', 'Radeon RX 550 4GB', 'Shop PC', 'Teamgroup Vulcan 16GB Bus 3200Mhz', 'profile_pic-1701875197623.webp'),
-(38, 'PC GALAX GAMING Type2', 1, 15990000, 10, 'Intel Core I5 12400F  (NK)', 'Mainboard ASUS B660M-K', 'ASUS DUAL RTX 3060 12GB', 'Shop PC', 'Team Vulcan 16Gb Bus 3200Mhz', 'profile_pic-1702104633471.webp'),
-(39, 'PC TTG HERO GAMING', 1, 25990000, 10, 'Intel Core I5 12400F', 'ASROCK B660M PRO RS', 'MSI RTX 3080 GAMING Z TRIO 10Gb', 'Shop PC', 'Ram ADATA XPG SPECTRIX D50 16GB (2x8GB)', 'profile_pic-1702104758618.webp'),
-(40, 'PC TTG CYPER', 1, 13990000, 10, 'CPU Intel Core I5 10400F 6 nhân 12 luồng', 'Mainboard GIGABYTE H410M H V2', 'NVIDIA RTX 2060 6GB', 'Shop PC', 'Ram ADATA D50 BLACK RGB 16GB (2x8GB) DDR4 3200Mhz ', 'profile_pic-1702104939491.png'),
-(41, 'PC ZOTAC GAMING Type2 Super', 1, 9590000, 10, 'CPU Intel Core i3 10105F 3.7Ghz', 'Mainboard GIGABYTE H410M', 'MSI GTX 1660Super 6Gb', 'Shop PC', 'Team Vulcan 16Gb Bus 3200Mhz', 'profile_pic-1702105008164.webp'),
-(42, 'PC Đồ Họa Hiệu Suất Cao', 1, 17990000, 10, 'CPU Intel Core I5-13500', 'ASUS B760M_K DDR4', 'OCPC RTX 2060 Super 8GB', 'Shop PC', 'RAM VulcanZ 16GB (2x8)/(1x6) Bus 3200Mhz', 'profile_pic-1702105130169.webp'),
-(43, 'PC SUPER ULTIMATE 4K GAMING', 1, 25680000, 10, 'CPU Intel Core i5-12400F', 'Mainboard ASRock B760M PG Lightning/D4', 'OCPC GEFORCE RTX 3080 10GB BLACK', 'Shop PC', 'ADATA XPG D50 16GB (2x8) Bus 3200Mhz', 'profile_pic-1702105223443.webp'),
-(44, 'PC MINI WHITE SPACE GAMING PRO', 1, 27888000, 10, 'CPU Intel Core I5 13400F', 'Mainboard Colorful CVN B760I FROZEN WIFI V20', 'VGA ASUS RTX 3060 12Gb Dual Mini 2Fan', 'Shop PC', 'ADATA D50 16GB (2x8) Bus 3200Mhz White DDR4', 'profile_pic-1702105295789.webp'),
-(45, 'PC PRO GAMING', 1, 21680000, 10, 'Intel Core i5 12400F', 'Mainboard ASUS B760M-K DDR4', 'VGA ASUS ROG Strix GeForce RTX 3070 Ti OC 8GB GDDR6X', 'Shop PC', 'ADATA D50 16Gb (2x8) Bus 3200mhz', 'profile_pic-1702105387845.webp'),
-(46, 'PC ADOBE - Worksation 3D Visualization', 1, 29990000, 10, 'Intel Core i7 13700K', 'AORUS Z690M ELITE DDR4', 'VGA ZOTAC GAMING GeForce RTX 4060 8GB Twin Edge OC', 'Shop PC', 'TeamGroup VulcanZ 32GB (2x16) Bus 3200Mhz', 'profile_pic-1702105482068.webp'),
-(47, 'PC ADOBE - Workstation 2D 3D EDITING', 1, 25980000, 10, 'Intel Core i7 13700K', 'AORUS Z690M ELITE DDR4', 'VGA NVIDIA OCPC GTX 1660 Super 6GB GDDR6', 'Shop PC', 'TeamGroup VulcanZ 32GB (2x16) Bus 3200Mhz', 'profile_pic-1702105570898.webp');
+(37, 'PC TTG CSGO Valorant PUBG FIFA LOL RX550', 1, 8490000, 10, 'CPU INTEL Core I3 10105F', 'Mainboard Gigabyte H410M H DDR4', 'Radeon RX 550 4GB', 'Shop PC', 'Teamgroup Vulcan 16GB Bus 3200Mhz', 'profile_pic-1701875197623.webp');
 
 -- --------------------------------------------------------
 
@@ -219,7 +193,7 @@ ALTER TABLE `hoadon`
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `theloai`
