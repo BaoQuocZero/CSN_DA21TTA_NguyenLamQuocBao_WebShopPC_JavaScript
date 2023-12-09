@@ -14,7 +14,7 @@ let getHomePage = async (req, res) => {
 
 let postHomePage = async (req, res) => {
     // Sử dụng req.body để lấy dữ liệu từ biểu mẫu POST
-    let { TimTenSP, TimTenTL, TimChip, TimMain, TimVGA, TimNhanSanXuat, TimRAM } = req.body;
+    let { TimTenSP, TimTenTL, TimDonGiaSP, TimTonKhoSP, TimChip, TimMain, TimVGA, TimNhanSanXuat, TimRAM } = req.body;
     //console.log(req.body);
     // Bắt đầu câu truy vấn SQL
     let sqlQuery = `SELECT sp.MaSP, sp.TenSP, tl.TenTL, sp.DonGiaSP, sp.TonKhoSP, sp.Chip, sp.Main, sp.VGA, sp.NhanSanXuat, sp.RAM, sp.AnhSP 
@@ -30,6 +30,14 @@ let postHomePage = async (req, res) => {
 
     if (TimTenTL) {
         sqlQuery += ` AND tl.TenTL LIKE '%${TimTenTL}%'`;
+    }
+
+    if (TimDonGiaSP) {
+        sqlQuery += ` AND sp.DonGiaSP = ${TimDonGiaSP}`;
+    }
+
+    if (TimTonKhoSP) {
+        sqlQuery += ` AND sp.TonKhoSP = ${TimTonKhoSP}`;
     }
 
     if (TimChip) {

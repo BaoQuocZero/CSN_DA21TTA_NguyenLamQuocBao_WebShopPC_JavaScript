@@ -1,8 +1,9 @@
 import express from "express";
-
+import bodyParser from "body-parser";
 import APIController from '../controller/APIController.js'
 
 let router = express.Router()
+router.use(bodyParser.json());
 
 const initAPIRoute = (app) => {
 
@@ -10,7 +11,7 @@ const initAPIRoute = (app) => {
     router.get('/sanpham/:id', APIController.getSanPhamById);
     router.get('/sanpham/slider', APIController.getSanPhamSlider);
 
-    router.post('/create-user', APIController.createHoaDon);
+    router.post('/create-hoadon', APIController.createHoaDon);
 
     //API cũ 
     router.post('/create-user', APIController.createNewUser); //method POST -> CREATE data

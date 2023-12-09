@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
+import { format } from 'date-fns';
+
 import './MuaSanPham.scss'; // Import tệp CSS
 
 import Nav2 from '../Nav/Nav2';
@@ -14,14 +16,16 @@ class MuaSanPham extends Component {
             sanPham: {},  // Khởi tạo sanPham với một đối tượng trống
             soLuong: 1,
             loading: true,
+            error: '', // Thêm trạng thái error
 
             MaKH: 'QuocBaoKH1',
             MaNV: 'QuocBaoNV1',
             DiaChiShip: '',
             SdtShip: '',
+            NgayDatHang: '',
             GhiChu: '',
             ChiTietHoaDon: [
-                { MaSP: 25, SoLuong: 1, GiamGia: 1 },
+                { MaSP: 0, SoLuong: 1, GiamGia: 1 },
                 // Các mục ChiTietHoaDon khác nếu cần
             ],
         };
@@ -30,6 +34,16 @@ class MuaSanPham extends Component {
     async componentDidMount() {
         const { match, location } = this.props;
         const id = match.params.id;
+
+        // Khởi tạo ngày hiện tại
+        const today = new Date();
+        const formattedDate = format(today, 'yyyy-MM-dd HH:mm:ss');
+
+        // Set state với ngày hiện tại
+        this.setState({
+            NgayDatHang: formattedDate,
+        });
+
         if (location.state && location.state.soLuong) {
             this.setState({ soLuong: location.state.soLuong });
         }
@@ -67,34 +81,55 @@ class MuaSanPham extends Component {
                 ChiTietHoaDon: [...updatedChiTietHoaDon, { MaSP: prevState.sanPham.MaSP, SoLuong: prevState.soLuong, GiamGia: 1 }],
             };
         }, () => {
-            console.log(">>>Check 1: ", this.state);
-            this.handleSubmit();
+            this.handleSubmit(event);
         });
     };
 
 
     handleSubmit = async (event) => {
-        console.log(">>>Check: ", this.state)
+        console.log(">>> Check:", this.state)
 
-        // try {
-        //     const response = await fetch('http://localhost:8080/create-hoadon', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify(this.state),
-        //     });
+        event.preventDefault(); // Ngăn chặn form gửi đi và làm refresh trang
 
-        //     if (response.ok) {
-        //         const data = await response.json();
-        //         this.setState({ message: data.message });
-        //     } else {
-        //         throw new Error('Failed to create HoaDon');
-        //     }
-        // } catch (error) {
-        //     console.error('Error:', error);
-        //     this.setState({ message: 'Failed to create HoaDon' });
-        // }
+        // Kiểm tra xem tất cả các trường bắt buộc đã được nhập hay chưa
+        if (!this.state.MaKH || !this.state.MaNV || !this.state.DiaChiShip || !this.state.NgayDatHang || this.state.ChiTietHoaDon.length === 0) {
+            //this.setState({ error: "Vui lòng nhập đầy đủ thông tin!" });
+            alert("Vui lòng nhập đầy đủ thông tin!");
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:8080/api/v1/create-hoadon', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    MaKH: this.state.MaKH,
+                    MaNV: this.state.MaNV,
+                    DiaChiShip: this.state.DiaChiShip,
+                    NgayDatHang: this.state.NgayDatHang,
+                    GhiChu: this.state.GhiChu,
+                    ChiTietHoaDon: this.state.ChiTietHoaDon,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                this.setState({ message: data.message });
+            } else {
+                throw new Error('Failed to create HoaDon');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            this.setState({ message: 'Failed to create HoaDon' });
+        }
+        alert("Đặt hàng thành công!")
+        this.props.history.push("/");
+    };
+
+    btnGiamGia = () => {
+        alert("Sản phẩm không có chính sách giảm giá !!!")
     };
 
     render() {
@@ -177,11 +212,11 @@ class MuaSanPham extends Component {
                                             <input
                                                 type="text"
                                                 name="GiamGia"
-                                                value={item.GiamGia}
-                                                onChange={(e) => this.handleInputChange(e, index)}
+                                                // value={item.GiamGia}
+                                                // onChange={(e) => this.handleInputChange(e, index)}
                                                 className="muahang-magiamhgia" placeholder='Mã giảm giá (nếu có)'
                                             />
-                                            <button className='muahang-xacnhan'>Sử Dụng</button>
+                                            <button className='muahang-xacnhan' onClick={() => this.btnGiamGia()}>Sử Dụng</button>
                                         </label>
                                         <hr></hr>
                                         <div className='muahang-tamtinh'>  <span className='muahang-tamtinh1'>Tạm tính</span>

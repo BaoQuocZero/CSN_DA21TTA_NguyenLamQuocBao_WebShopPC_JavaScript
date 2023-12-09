@@ -76,22 +76,17 @@ let getSanPhamSlider = async (req, res) => {
 };
 
 let createHoaDon = async (req, res) => {
-    let { MaKH, MaNV, DiaChiShip, ChiTietHoaDon } = req.body;
-
-    if (!MaKH || !MaNV || !DiaChiShip || !ChiTietHoaDon || ChiTietHoaDon.length === 0) {
-        return res.status(400).json({
-            message: "Missing required information for creating HoaDon",
-        });
-    }
 
     try {
+        const { MaKH, MaNV, DiaChiShip, NgayDatHang, GhiChu, ChiTietHoaDon } = req.body;
+
         // Insert HoaDon
         const [result] = await pool.execute(`
-            INSERT INTO HoaDon(MaKH, MaNV, DiaChiShip) 
-            VALUES (?, ?, ?)`,
-            [MaKH, MaNV, DiaChiShip]);
+            INSERT INTO HoaDon(MaKH, MaNV, DiaChiShip, NgayDatHang, GhiChu) 
+            VALUES (?, ?, ?, ?, ?)`,
+            [MaKH, MaNV, DiaChiShip, NgayDatHang, GhiChu]);
 
-        const newMaHD = result.insertId; // Get the newly generated MaHD
+        const newMaHD = result.insertId; // Lấy MaHD mới được tạo
 
         // Insert ChiTietHoaDon
         for (const { MaSP, SoLuong, GiamGia } of ChiTietHoaDon) {
@@ -99,6 +94,13 @@ let createHoaDon = async (req, res) => {
                 INSERT INTO ChiTietHoaDon(MaHD, MaSP, SoLuong, GiamGia) 
                 VALUES (?, ?, ?, ?)`,
                 [newMaHD, MaSP, SoLuong, GiamGia]);
+
+            // Cập nhật TonKhoSP
+            await pool.execute(`
+                UPDATE SanPham
+                SET TonKhoSP = TonKhoSP - ?
+                WHERE MaSP = ?`,
+                [SoLuong, MaSP]);
         }
 
         return res.status(200).json({

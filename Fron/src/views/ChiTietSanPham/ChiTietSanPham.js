@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import './ChiTietSanPham.scss'
 
 import Nav2 from "../Nav/Nav2";
+import Footer from "../Footer/Footer"
 
 class ChiTietSanPham extends Component {
 
@@ -124,6 +125,7 @@ class ChiTietSanPham extends Component {
                 </form>
               </div>
             </div>
+            <Footer />
           </>
         )}
       </div>

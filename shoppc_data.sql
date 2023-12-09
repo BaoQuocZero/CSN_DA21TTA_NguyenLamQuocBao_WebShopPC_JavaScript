@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2023 at 08:08 AM
+-- Generation Time: Dec 09, 2023 at 10:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -46,6 +46,7 @@ CREATE TABLE `hoadon` (
   `MaNV` varchar(255) DEFAULT NULL,
   `DiaChiShip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SdtShip` varchar(10) DEFAULT NULL,
+  `NgayDatHang` date DEFAULT NULL,
   `GhiChu` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
