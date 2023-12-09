@@ -38,6 +38,7 @@ const initWebRoute = (app) => {
     router.get('/Trang-them-san-pham', homeController.getThemSanPhamPage);
     router.get('/edit/:id', homeController.getEditPage);
 
+    router.post('/Tim', upload.none(), homeController.postHomePage);
     router.post('/Them-san-pham', upload.single("profile_pic"), homeController.themSanPham)
     router.post('/update-sanpham', upload.single("profile_pic"), homeController.postUpdateSanPham)
     router.post('/delete', homeController.deleteSanPham)

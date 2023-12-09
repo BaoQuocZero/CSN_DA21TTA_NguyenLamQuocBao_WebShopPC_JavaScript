@@ -16,7 +16,25 @@ class Slider extends Component {
     componentDidMount() {
         this.fetchData();
         this.setupSliderNavigation();
+        this.startAutoSlide();
     }
+
+    componentWillUnmount() {
+        this.stopAutoSlide();
+    }
+
+    startAutoSlide = () => {
+        try {
+            this.autoSlideInterval = setInterval(this.moveSliderNext, 5000);
+        }
+        catch (error) {
+
+        }
+    };
+
+    stopAutoSlide = () => {
+        clearInterval(this.autoSlideInterval);
+    };
 
     fetchData = async () => {
         try {

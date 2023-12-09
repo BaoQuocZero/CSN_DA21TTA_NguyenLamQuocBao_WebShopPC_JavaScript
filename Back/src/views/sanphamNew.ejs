@@ -46,7 +46,13 @@
             </div>
             <div>
                 <label for="">Nhà sản xuất:</label>
-                <input type="text" name="NhanSanXuat" />
+                <input list="ListNhanSanXuat" name="NhanSanXuat" />
+                <datalist id="ListNhanSanXuat">
+                    <option value="Shop PC">
+                    <option value="Apple">
+                    <option value="ASUS">
+                    <option value="Lenovo">
+                </datalist>
             </div>
             <div>
                 <label for="">Ram:</label>
@@ -57,7 +63,7 @@
                 <input type="file" name="profile_pic" />
             </div>
             <div>
-                <button type="submit" class="btnSubmit">Submit</button>
+                <button type="submit" class="button">Submit</button>
             </div>
         </form>
     </div>

@@ -44,3 +44,32 @@ body {
 .create-user-container input {
     width: 700px;
 }
+
+.input_Tim {
+    padding: 8px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    background-color: #00ffa2;
+}
+
+.input_Tim:hover {
+    color: #fff !important;
+    background-color: #007047 !important
+}
+
+.button {
+    background-color: #04AA6D;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}

@@ -1,9 +1,62 @@
 import pool from "../configs/connectDB"
 
 let getHomePage = async (req, res) => {
-    const [rows, fields] = await pool.execute(`SELECT * FROM SanPham`);
-    return res.render("index.ejs", { SanPham: rows })
+    // Bắt đầu câu truy vấn SQL
+    let sqlQuery = `SELECT sp.MaSP, sp.TenSP, tl.TenTL, sp.DonGiaSP, sp.TonKhoSP, sp.Chip, sp.Main, sp.VGA, sp.NhanSanXuat, sp.RAM, sp.AnhSP 
+                    FROM sanpham as sp, theloai as tl 
+                    WHERE sp.MaTL = tl.MaTL ORDER BY sp.MaSP DESC`;
+
+    // Kết thúc câu truy vấn SQL
+    const [rows, fields] = await pool.execute(sqlQuery);
+
+    return res.render("index.ejs", { SanPham: rows });
 }
+
+let postHomePage = async (req, res) => {
+    // Sử dụng req.body để lấy dữ liệu từ biểu mẫu POST
+    let { TimTenSP, TimTenTL, TimChip, TimMain, TimVGA, TimNhanSanXuat, TimRAM } = req.body;
+    //console.log(req.body);
+    // Bắt đầu câu truy vấn SQL
+    let sqlQuery = `SELECT sp.MaSP, sp.TenSP, tl.TenTL, sp.DonGiaSP, sp.TonKhoSP, sp.Chip, sp.Main, sp.VGA, sp.NhanSanXuat, sp.RAM, sp.AnhSP 
+                    FROM sanpham as sp, theloai as tl
+                    WHERE sp.MaTL = tl.MaTL `;
+
+
+    // Thêm điều kiện WHERE cho các trường cần tìm kiếm
+
+    if (TimTenSP) {
+        sqlQuery += `AND sp.TenSP LIKE '%${TimTenSP}%'`;
+    }
+
+    if (TimTenTL) {
+        sqlQuery += ` AND tl.TenTL LIKE '%${TimTenTL}%'`;
+    }
+
+    if (TimChip) {
+        sqlQuery += ` AND sp.Chip LIKE '%${TimChip}%'`;
+    }
+
+    if (TimMain) {
+        sqlQuery += ` AND sp.Main LIKE '%${TimMain}%'`;
+    }
+
+    if (TimVGA) {
+        sqlQuery += ` AND sp.VGA LIKE '%${TimVGA}%'`;
+    }
+
+    if (TimNhanSanXuat) {
+        sqlQuery += ` AND sp.NhanSanXuat LIKE '%${TimNhanSanXuat}%'`;
+    }
+
+    if (TimRAM) {
+        sqlQuery += ` AND sp.RAM LIKE '%${TimRAM}%'`;
+    }
+
+    // Kết thúc câu truy vấn SQL
+    const [rows, fields] = await pool.execute(sqlQuery);
+    return res.render("Tim.ejs", { SanPham: rows });
+}
+
 
 let getThemSanPhamPage = (req, res) => {
     return res.render('sanphamNew.ejs')
@@ -67,5 +120,5 @@ let deleteSanPham = async (req, res) => {
 }
 
 module.exports = {
-    getHomePage, getThemSanPhamPage, themSanPham, getEditPage, postUpdateSanPham, deleteSanPham
+    getHomePage, getThemSanPhamPage, themSanPham, getEditPage, postUpdateSanPham, deleteSanPham, postHomePage
 }

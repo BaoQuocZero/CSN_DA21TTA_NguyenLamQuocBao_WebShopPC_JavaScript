@@ -10,7 +10,7 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="/">Sản phẩm</a>
+        <a href="/">Sản phẩm</a>
         <a href="/Trang-them-san-pham">Mới</a>
     </div>
 
@@ -35,56 +35,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="/Tim" enctype="multipart/form-data" method="POST">
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <input type="text" class="input_Tim" name="TimTenSP">
-                            </td>
-                            <td>
-                                <input list="ListTheLoai" class="input_Tim" name="TimTenTL">
-                                <datalist id="ListTheLoai">
-                                    <option value="PC">
-                                    <option value="LapTop">
-                                </datalist>
-                            </td>
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
-                            <td>
-                                <input type="text" class="input_Tim" name="TimChip">
-                            </td>
-                            <td>
-                                <input type="text" class="input_Tim" name="TimMain">
-                            </td>
-                            <td>
-                                <input type="text" class="input_Tim" name="TimVGA">
-                            </td>
-                            <td>
-                                <input list="ListNhanSanXuat" class="input_Tim" name="TimNhaSanXuat">
-                                <datalist id="ListNhanSanXuat">
-                                    <option value="Shop PC">
-                                    <option value="Apple">
-                                    <option value="ASUS">
-                                    <option value="Lenovo">
-                                </datalist>
-                            </td>
-                            <td>
-                                <input type="text" class="input_Tim" name="TimRam">
-                            </td>
-                            <td>
-                                <img src="/images/Kothayanh.jpg" alt="" width="100px" height="100px" />
-                            </td>
-                            <td>
-                                <button type="submit" class="button">Tìm</button>
-                            </td>
-                        </tr>
-                    </form>
                     <% for(let i=0; i < SanPham.length; i++) { %>
                         <tr>
                             <td>
