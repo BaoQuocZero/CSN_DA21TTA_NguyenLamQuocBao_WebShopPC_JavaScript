@@ -1,135 +1,179 @@
-import React, { Component } from 'react';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import "./Test.scss"
 
-class HoaDonForm extends Component {
+class Test extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            MaKH: '',
-            MaNV: '',
-            DiaChiShip: '',
-            ChiTietHoaDon: [
-                { MaSP: '', SoLuong: 0, GiamGia: 0 },
-                // Các mục ChiTietHoaDon khác nếu cần
-            ],
-            message: '',
+            data: null,
+            loading: true,
+            error: null,
+            searchTerm: "",
+            priceFilter: "", // Thêm state để lưu trữ giá trị của nút radio
         };
     }
 
-    handleInputChange = (event, index) => {
-        const { name, value } = event.target;
-        const updatedChiTietHoaDon = [...this.state.ChiTietHoaDon];
-        updatedChiTietHoaDon[index][name] = value;
+    componentDidMount() {
+        this.fetchData();
+    }
 
-        this.setState({ ChiTietHoaDon: updatedChiTietHoaDon });
-    };
-
-    handleAddChiTietHoaDon = () => {
-        this.setState((prevState) => ({
-            ChiTietHoaDon: [...prevState.ChiTietHoaDon, { MaSP: '', SoLuong: 0, GiamGia: 0 }],
-        }));
-    };
-
-    handleSubmit = async (event) => {
-        event.preventDefault();
-
+    fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:8080/create-hoadon', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(this.state),
+            const response = await fetch("http://localhost:8080/api/v1/sanpham", {
+                method: "GET",
+                mode: "cors",
+            });
+            if (!response.ok) {
+                throw new Error("Yêu cầu không thành công");
+            }
+
+            const jsonResponse = await response.json();
+
+            this.setState({
+                data: jsonResponse.data,
+                loading: false,
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                this.setState({ message: data.message });
-            } else {
-                throw new Error('Failed to create HoaDon');
-            }
+            console.log(jsonResponse);
         } catch (error) {
-            console.error('Error:', error);
-            this.setState({ message: 'Failed to create HoaDon' });
+            console.error(error.message);
+            this.setState({
+                error: error.message,
+                loading: false,
+            });
         }
     };
 
-    render() {
-        return (
-            <div>
-                <h2>Create HoaDon</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        MaKH:
-                        <input
-                            type="text"
-                            name="MaKH"
-                            value={this.state.MaKH}
-                            onChange={(e) => this.setState({ MaKH: e.target.value })}
-                        />
-                    </label>
-                    <label>
-                        MaNV:
-                        <input
-                            type="text"
-                            name="MaNV"
-                            value={this.state.MaNV}
-                            onChange={(e) => this.setState({ MaNV: e.target.value })}
-                        />
-                    </label>
-                    <label>
-                        DiaChiShip:
-                        <input
-                            type="text"
-                            name="DiaChiShip"
-                            value={this.state.DiaChiShip}
-                            onChange={(e) => this.setState({ DiaChiShip: e.target.value })}
-                        />
-                    </label>
+    handleSearchChange = (event) => {
+        this.setState({ searchTerm: event.target.value });
+    };
 
-                    {this.state.ChiTietHoaDon.map((item, index) => (
-                        <div key={index}>
-                            <h3>ChiTietHoaDon {index + 1}</h3>
-                            <label>
-                                MaSP:
+    handlePriceFilterChange = (value) => {
+        this.setState({ priceFilter: value });
+    };
+
+    render() {
+        const { data, loading, error, searchTerm, priceFilter } = this.state;
+
+        const filteredData =
+            data &&
+            data.length > 0 &&
+            data
+                .filter((item) =>
+                    item.TenSP.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                .filter((item) =>
+                    priceFilter === "0"
+                        ? item.DonGiaSP > 0
+                        : priceFilter === "10000000"
+                            ? item.DonGiaSP < 10000000
+                            : priceFilter === "20000000"
+                                ? item.DonGiaSP < 20000000 && item.DonGiaSP >= 10000000
+                                : priceFilter === "30000000"
+                                    ? item.DonGiaSP > 20000000
+                                    : true
+                );
+
+        return (
+            <div className="container-bottom">
+                <div className="tieude1">
+                    <div>
+                        <h1>Danh Sách Sản Phẩm</h1>
+                    </div>
+
+                    <div className="Searchfillter">
+                        <div className="container_TimKiem">
+                            <label className="TimKiem_label"><b>Tìm kiếm</b></label>
+                            <input
+                                className="TimKiem_input TimKiem_input-hover-green"
+                                placeholder="tìm kiếm sản phẩm"
+                                value={searchTerm}
+                                onChange={this.handleSearchChange}
+                            />
+                        </div>
+                        <div className="fillter_TimKiem">
+
+                            <label className="container_InputRadio_TimKiem">
                                 <input
-                                    type="text"
-                                    name="MaSP"
-                                    value={item.MaSP}
-                                    onChange={(e) => this.handleInputChange(e, index)}
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="0"
+                                    checked={priceFilter === "0"}
+                                    onChange={() => this.handlePriceFilterChange("0")}
                                 />
+                                Tất cả
+                                <span className="checkmark"></span>
                             </label>
-                            <label>
-                                SoLuong:
+
+                            <label className="container_InputRadio_TimKiem">
                                 <input
-                                    type="number"
-                                    name="SoLuong"
-                                    value={item.SoLuong}
-                                    onChange={(e) => this.handleInputChange(e, index)}
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="10000000"
+                                    checked={priceFilter === "10000000"}
+                                    onChange={() => this.handlePriceFilterChange("10000000")}
                                 />
+                                Dưới 10 Triệu
+                                <span className="checkmark"></span>
                             </label>
-                            <label>
-                                GiamGia:
+                            <label className="container_InputRadio_TimKiem">
                                 <input
-                                    type="number"
-                                    name="GiamGia"
-                                    value={item.GiamGia}
-                                    onChange={(e) => this.handleInputChange(e, index)}
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="20000000"
+                                    checked={priceFilter === "20000000"}
+                                    onChange={() => this.handlePriceFilterChange("20000000")}
                                 />
+                                Từ 10 triệu đến 20 triệu
+                                <span className="checkmark"></span>
+                            </label>
+                            <label className="container_InputRadio_TimKiem">
+                                <input
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="30000000"
+                                    checked={priceFilter === "30000000"}
+                                    onChange={() => this.handlePriceFilterChange("30000000")}
+                                />
+                                Trên 20 triệu
+                                <span className="checkmark"></span>
                             </label>
                         </div>
-                    ))}
+                    </div>
+                </div>
 
-                    <button type="button" onClick={this.handleAddChiTietHoaDon}>
-                        Add ChiTietHoaDon
-                    </button>
-
-                    <button type="submit">Create HoaDon</button>
-                </form>
-                <p>{this.state.message}</p>
+                <ul className="products">
+                    {filteredData &&
+                        filteredData.map((item, index) => (
+                            <li key={index}>
+                                <div className="product-top">
+                                    <a
+                                        href={`/thongtinchitietsp/${item.MaSP}`}
+                                        className="product-thumb"
+                                    >
+                                        <img
+                                            src={item.imageUrl}
+                                            alt={item.TenSP}
+                                        />
+                                    </a>
+                                    <a href={`/thongtinchitietsp/${item.MaSP}`} className="mua">
+                                        Mua
+                                    </a>
+                                </div>
+                                <div className="product-info">
+                                    <div className="product-name">{item.TenSP}</div>
+                                    <div className="product-price">
+                                        {item.DonGiaSP.toLocaleString()} VND
+                                    </div>
+                                </div>
+                            </li>
+                        ))}
+                </ul>
             </div>
         );
     }
 }
 
-export default HoaDonForm;
+export default withRouter(Test);

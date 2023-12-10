@@ -8,6 +8,8 @@ import SanPhamDesktop from './SanPhamDesktop/SanPhamDesktop';
 import SanPhamApple from './SanPhamApple/SanPhamApple';
 import SanPhamASUS from './SanPhamASUS/SanPhamASUS';
 
+import Test from './Test/Test'
+
 //Thư viện
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -51,6 +53,10 @@ function App() {
             </Route>
             <Route path="/ASUS">
               <SanPhamASUS />
+            </Route>
+
+            <Route path="/test">
+              <Test />
             </Route>
 
           </Switch>

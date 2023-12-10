@@ -1,11 +1,53 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { withRouter } from 'react-router-dom';
 
 import './Nav2.scss'
 
 class Nav2 extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: null,
+            loading: true,
+            error: null,
+        };
+    }
+
+    fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/v1/khachhang", {
+                method: "GET",
+                mode: "cors",
+            });
+            if (!response.ok) {
+                throw new Error("Yêu cầu không thành công");
+            }
+
+            const jsonResponse = await response.json();
+
+            this.setState({
+                data: jsonResponse.data,
+                loading: false,
+            });
+
+            console.log(jsonResponse);
+        } catch (error) {
+            console.error(error.message);
+            this.setState({
+                error: error.message,
+                loading: false,
+            });
+        }
+    };
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
     handleViewHomePage = () => {
         // Điều hướng về trang "/"
         this.props.history.push("/");
@@ -28,6 +70,7 @@ class Nav2 extends Component {
     };
 
     render() {
+        const { data, loading, error } = this.state;
         return (
             <div className='navbar_Nav2' id='navbar'>
                 <div className='nav_Nav2'>
@@ -42,8 +85,8 @@ class Nav2 extends Component {
                             <a onClick={this.handleViewAll} className='nav-item_Nav2 nav-item4_Nav2'>Tất Cả</a>
                         </div>
                         <div className='cart-div_Nav2'>
-                            <a href="/cart">
-                                <FontAwesomeIcon icon={faCartShopping} className='font-awe_Nav2' />
+                            <a href="">
+                                <FontAwesomeIcon icon={faUser} /> {data && data.length > 0 && data[0].TenLienHe}
                             </a>
                         </div>
                     </div>

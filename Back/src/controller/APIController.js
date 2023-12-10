@@ -17,6 +17,22 @@ let getAllSanPham = async (req, res) => {
     })
 }
 
+let getKhachHang = async (req, res) => {
+    const [rows, fields] = await pool.execute('SELECT * FROM KhachHang LIMIT 1');
+
+    // Thêm đường dẫn đầy đủ cho mỗi sản phẩm
+    const productsWithImageUrls = rows.map((KhachHang) => {
+        return {
+            ...KhachHang,
+        };
+    });
+
+    return res.status(200).json({
+        message: "ok",
+        data: productsWithImageUrls
+    })
+}
+
 // Thêm hàm để lấy thông tin chi tiết sản phẩm theo id
 let getSanPhamById = async (req, res) => {
     let { id } = req.params;
@@ -223,6 +239,7 @@ let deleteUser = async (req, res) => {
 
 module.exports = {
     createNewUser, updateSanPham, deleteUser,
+    getKhachHang,
     getAllSanPham, getSanPhamById, getSanPhamSlider, createHoaDon,
     getSanPhamDesktop, getSanPhamApple, getSanPhamASUS
 }

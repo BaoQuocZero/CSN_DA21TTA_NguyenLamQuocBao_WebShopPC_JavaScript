@@ -15,6 +15,8 @@ class SanPhamApple extends React.Component {
             data: null,
             loading: true,
             error: null,
+            searchTerm: "",
+            priceFilter: "", // Thêm state để lưu trữ giá trị của nút radio
         };
     }
 
@@ -54,17 +56,103 @@ class SanPhamApple extends React.Component {
         history.push(`/SanPham/${SanPham.MaSP}`)
     }
 
+    handleSearchChange = (event) => {
+        this.setState({ searchTerm: event.target.value });
+    };
+
+    handlePriceFilterChange = (value) => {
+        this.setState({ priceFilter: value });
+    };
+
     render() {
-        const { data, loading, error } = this.state;
+        const { data, loading, error, searchTerm, priceFilter } = this.state;
+
+        const filteredData =
+            data &&
+            data.length > 0 &&
+            data
+                .filter((item) =>
+                    item.TenSP.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                .filter((item) =>
+                    priceFilter === "0"
+                        ? item.DonGiaSP > 0
+                        : priceFilter === "10000000"
+                            ? item.DonGiaSP < 10000000
+                            : priceFilter === "20000000"
+                                ? item.DonGiaSP < 20000000 && item.DonGiaSP >= 10000000
+                                : priceFilter === "30000000"
+                                    ? item.DonGiaSP > 20000000
+                                    : true
+                );
         return (
             <>
                 <Nav2 />
                 <div className="relative">
                     <div className="container-bottom">
                         <div className="tieude"><h1>Danh Sách Sản Phẩm Apple</h1></div>
+                        <div className="Searchfillter">
+                            <div className="container_TimKiem">
+                                <label className="TimKiem_label"><b>Tìm kiếm</b></label>
+                                <input
+                                    className="TimKiem_input TimKiem_input-hover-green"
+                                    placeholder="tìm kiếm sản phẩm"
+                                    value={searchTerm}
+                                    onChange={this.handleSearchChange}
+                                />
+                            </div>
+                            <div className="fillter_TimKiem">
+
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="0"
+                                        checked={priceFilter === "0"}
+                                        onChange={() => this.handlePriceFilterChange("0")}
+                                    />
+                                    Tất cả
+                                    <span className="checkmark"></span>
+                                </label>
+
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="10000000"
+                                        checked={priceFilter === "10000000"}
+                                        onChange={() => this.handlePriceFilterChange("10000000")}
+                                    />
+                                    Dưới 10 Triệu
+                                    <span className="checkmark"></span>
+                                </label>
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="20000000"
+                                        checked={priceFilter === "20000000"}
+                                        onChange={() => this.handlePriceFilterChange("20000000")}
+                                    />
+                                    Từ 10 triệu đến 20 triệu
+                                    <span className="checkmark"></span>
+                                </label>
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="30000000"
+                                        checked={priceFilter === "30000000"}
+                                        onChange={() => this.handlePriceFilterChange("30000000")}
+                                    />
+                                    Trên 20 triệu
+                                    <span className="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
                         <ul className="products">
-                            {data && data.length > 0 &&
-                                data.map((item, index) => (
+                            {filteredData && filteredData.length > 0 &&
+                                filteredData.map((item, index) => (
                                     <li key={index}>
                                         <div className="product-top">
                                             <a onClick={() => this.handleViewSanPham(item)} className="product-thumb">

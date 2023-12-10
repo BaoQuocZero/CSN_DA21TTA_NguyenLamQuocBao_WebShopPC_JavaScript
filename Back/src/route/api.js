@@ -7,7 +7,8 @@ router.use(bodyParser.json());
 
 const initAPIRoute = (app) => {
 
-    router.get('/sanpham', APIController.getAllSanPham); //method GET -> READ data
+    router.get('/sanpham', APIController.getAllSanPham);
+    router.get('/khachhang', APIController.getKhachHang); //method GET -> READ data
     router.get('/sanpham/:id', APIController.getSanPhamById);
     router.get('/sanpham/slider', APIController.getSanPhamSlider);
     router.get('/sanphamDesktop', APIController.getSanPhamDesktop);
