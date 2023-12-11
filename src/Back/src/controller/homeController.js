@@ -12,6 +12,22 @@ let getHomePage = async (req, res) => {
     return res.render("index.ejs", { SanPham: rows });
 }
 
+let getThongKe = async (req, res) => {
+    // Bắt đầu câu truy vấn SQL
+    let sqlQuery = `SELECT sp.TenSP, sp.NhanSanXuat , kh.TenLienHe, ct.SoLuong, sp.DonGiaSP, DATE_FORMAT(hd.NgayDatHang, '%Y-%m-%d %H:%i:%s') AS FormattedNgayDatHang
+                    FROM HoaDon as hd
+                    JOIN ChiTietHoaDon as ct ON hd.MaHD = ct.MaHD
+                    JOIN KhachHang as kh ON hd.MaKH = kh.MaKH
+                    JOIN SanPham as sp ON ct.MaSP = sp.MaSP
+                    WHERE hd.MaHD = ct.MaHD AND kh.MaKH = hd.MaKH AND sp.MaSP = ct.MaSP
+                    `;
+
+    // Kết thúc câu truy vấn SQL
+    const [rows, fields] = await pool.execute(sqlQuery);
+    console.log(">>> Check: ", rows)
+    return res.render("ThongKe.ejs", { SanPham: rows });
+}
+
 let postHomePage = async (req, res) => {
     // Sử dụng req.body để lấy dữ liệu từ biểu mẫu POST
     let { TimTenSP, TimTenTL, TimDonGiaSP, TimTonKhoSP, TimChip, TimMain, TimVGA, TimNhanSanXuat, TimRAM } = req.body;
@@ -128,5 +144,6 @@ let deleteSanPham = async (req, res) => {
 }
 
 module.exports = {
-    getHomePage, getThemSanPhamPage, themSanPham, getEditPage, postUpdateSanPham, deleteSanPham, postHomePage
+    getHomePage, getThemSanPhamPage, themSanPham, getThongKe,
+    getEditPage, postUpdateSanPham, deleteSanPham, postHomePage
 }

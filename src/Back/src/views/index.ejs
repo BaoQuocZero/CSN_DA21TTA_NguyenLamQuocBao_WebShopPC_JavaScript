@@ -10,8 +10,9 @@
 
 <body>
     <div class="topnav">
-        <a href="/">Sản phẩm</a>
+        <a class="active" href="/">Sản phẩm</a>
         <a href="/Trang-them-san-pham">Mới</a>
+        <a href="/ThongKe">Thống kê</a>
     </div>
 
     <div style="padding-left:16px">
@@ -38,35 +39,36 @@
                     <form action="/Tim" enctype="multipart/form-data" method="POST">
                         <tr>
                             <td>
-
+                                <p>??</p>
                             </td>
                             <td>
-                                <input type="text" class="input_Tim" name="TimTenSP">
+                                <input type="text" class="input_Tim" name="TimTenSP" placeholder="Tìm tên">
                             </td>
                             <td>
-                                <input list="ListTheLoai" class="input_Tim" name="TimTenTL">
+                                <input list="ListTheLoai" class="input_Tim" name="TimTenTL" placeholder="Tìm thể loại">
                                 <datalist id="ListTheLoai">
                                     <option value="PC">
                                     <option value="LapTop">
                                 </datalist>
                             </td>
                             <td>
-                                <input type="text" class="input_Tim" name="TimDonGiaSP">
+                                <input type="text" class="input_Tim" name="TimDonGiaSP" placeholder="Tìm giá">
                             </td>
                             <td>
-                                <input type="text" class="input_Tim" name="TimTonKhoSP">
+                                <input type="text" class="input_Tim" name="TimTonKhoSP" placeholder="Tìm tồn kho">
                             </td>
                             <td>
-                                <input type="text" class="input_Tim" name="TimChip">
+                                <input type="text" class="input_Tim" name="TimChip" placeholder="Tìm chip">
                             </td>
                             <td>
-                                <input type="text" class="input_Tim" name="TimMain">
+                                <input type="text" class="input_Tim" name="TimMain" placeholder="Tìm main">
                             </td>
                             <td>
-                                <input type="text" class="input_Tim" name="TimVGA">
+                                <input type="text" class="input_Tim" name="TimVGA" placeholder="Tìm VGA">
                             </td>
                             <td>
-                                <input list="ListNhanSanXuat" class="input_Tim" name="TimNhanSanXuat">
+                                <input list="ListNhanSanXuat" class="input_Tim" name="TimNhanSanXuat"
+                                    placeholder="Tìm nxs">
                                 <datalist id="ListNhanSanXuat">
                                     <option value="Shop PC">
                                     <option value="Apple">
@@ -75,7 +77,7 @@
                                 </datalist>
                             </td>
                             <td>
-                                <input type="text" class="input_Tim" name="TimRam">
+                                <input type="text" class="input_Tim" name="TimRam" placeholder="Tìm RAM">
                             </td>
                             <td>
                                 <img src="/images/Kothayanh.jpg" alt="" width="100px" height="100px" />
@@ -85,6 +87,7 @@
                             </td>
                         </tr>
                     </form>
+
                     <% for(let i=0; i < SanPham.length; i++) { %>
                         <tr>
                             <td>

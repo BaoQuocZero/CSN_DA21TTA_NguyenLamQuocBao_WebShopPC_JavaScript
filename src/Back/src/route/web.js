@@ -36,6 +36,7 @@ const upload = multer({ storage: storage, fileFilter: imageFilter });
 const initWebRoute = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/Trang-them-san-pham', homeController.getThemSanPhamPage);
+    router.get('/ThongKe', homeController.getThongKe);
     router.get('/edit/:id', homeController.getEditPage);
 
     router.post('/Tim', upload.none(), homeController.postHomePage);
