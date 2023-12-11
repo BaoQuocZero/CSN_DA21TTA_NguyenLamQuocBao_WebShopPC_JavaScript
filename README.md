@@ -69,31 +69,31 @@ Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
 
 2. **Cài Đặt Dependencies:**
 
-   Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
+   - Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
    ```bash
    npm install
    ```
-   Chuột phải vào thư mục src/Fron chọn Open in integrated Terminal
+   - Chuột phải vào thư mục src/Fron chọn Open in integrated Terminal
     ```bash
    npm install
    ```
 
 4. **Cấu Hình Môi Trường:**
    
-   Tạo một tệp `.env` từ tệp `.env.example` và điền thông tin cần thiết (env có sẵn trong dự án).
+   - Tạo một tệp `.env` từ tệp `.env.example` và điền thông tin cần thiết (env có sẵn trong dự án).
 
 6. **Chạy Ứng Dụng:**
    
-   Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
+   - Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
    ```bash
    npm run start
    ```
-   Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
+   - Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
     ```bash
    npm run start
    ```
 
-   Hoặc sử dụng `nodemon` để tự động khởi động lại ứng dụng khi có thay đổi (đã được cài sẵn):
+   - Hoặc sử dụng `nodemon` để tự động khởi động lại ứng dụng khi có thay đổi (đã được cài sẵn):
 
    ```bash
    npm install -g nodemon
