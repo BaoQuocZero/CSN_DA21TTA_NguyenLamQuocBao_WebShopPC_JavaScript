@@ -68,6 +68,7 @@ Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
    git clone https://github.com/BaoQuocZero/CSN_DA21TTA_NguyenLamQuocBao_JavaScript.git
 
 2. **Cài Đặt Dependencies:**
+
    Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
    ```bash
    npm install
@@ -78,9 +79,11 @@ Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
    ```
 
 4. **Cấu Hình Môi Trường:**
+   
    Tạo một tệp `.env` từ tệp `.env.example` và điền thông tin cần thiết (env có sẵn trong dự án).
 
-5. **Chạy Ứng Dụng:**
+6. **Chạy Ứng Dụng:**
+   
    Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
    ```bash
    npm run start
@@ -113,6 +116,10 @@ Nếu bạn gặp vấn đề hoặc muốn đóng góp, vui lòng tạo một "
 
 ## Liên Hệ
 
-Cung cấp thông tin liên hệ nếu ai đó muốn liên hệ với bạn về dự án.
+Nếu bạn có bất kỳ câu hỏi hoặc muốn liên hệ với tôi về dự án, bạn có thể sử dụng các thông tin sau:
 
----
+- **Trường Đại học:** Đại học Trà Vinh
+- **Lớp:** DA21TTA
+- **Email:** [BaoQuoczero@gmail.com](mailto:BaoQuoczero@gmail.com)
+
+Tôi rất mong nhận được phản hồi và sự hỗ trợ từ cộng đồng. Đừng ngần ngại liên hệ nếu bạn có bất kỳ ý kiến đóng góp hoặc câu hỏi nào liên quan đến dự án.
