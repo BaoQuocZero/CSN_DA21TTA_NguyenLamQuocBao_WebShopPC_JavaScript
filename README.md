@@ -58,6 +58,7 @@ Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
 
 ## Yêu Cầu
 
+- Xampp [v3.3.0]
 - Node.js [v14.17.0]
 - npm (hoặc yarn) [6.14.13]
 
@@ -83,7 +84,9 @@ Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
    - Tạo một tệp `.env` từ tệp `.env.example` và điền thông tin cần thiết (env có sẵn trong dự án).
 
 6. **Chạy Ứng Dụng:**
-   
+
+   - Import file src/shoppc_data.sql vào Xampp
+   - Mở visual studio code Open dự án
    - Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
    ```bash
    npm run start
