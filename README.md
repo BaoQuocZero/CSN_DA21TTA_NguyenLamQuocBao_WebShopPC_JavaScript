@@ -120,6 +120,7 @@ Nếu bạn có bất kỳ câu hỏi hoặc muốn liên hệ với tôi về d
 
 - **Trường Đại học:** Đại học Trà Vinh
 - **Lớp:** DA21TTA
+- **Tên:** Nguyễn Lâm Quốc Bảo
 - **Email:** [BaoQuoczero@gmail.com](mailto:BaoQuoczero@gmail.com)
 
 Tôi rất mong nhận được phản hồi và sự hỗ trợ từ cộng đồng. Đừng ngần ngại liên hệ nếu bạn có bất kỳ ý kiến đóng góp hoặc câu hỏi nào liên quan đến dự án.
