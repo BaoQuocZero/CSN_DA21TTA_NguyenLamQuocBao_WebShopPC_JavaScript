@@ -53,8 +53,8 @@
 
 Tệp README là nơi bạn cung cấp thông tin chi tiết và hướng dẫn về cách cài đặt và chạy một dự án Node.js của bạn. Dưới đây là một mô hình README cơ bản:
 
-## Mô Tả
-Hướng dẫn cài đặt dự án
+## Hướng dẫn cài đặt dự án
+Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
 
 ## Yêu Cầu
 
@@ -68,21 +68,25 @@ Hướng dẫn cài đặt dự án
    git clone https://github.com/BaoQuocZero/CSN_DA21TTA_NguyenLamQuocBao_JavaScript.git
 
 2. **Cài Đặt Dependencies:**
-   ```bash
    Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
+   ```bash
    npm install
+   ```
    Chuột phải vào thư mục src/Fron chọn Open in integrated Terminal
+    ```bash
    npm install
    ```
 
-3. **Cấu Hình Môi Trường:**
+4. **Cấu Hình Môi Trường:**
    Tạo một tệp `.env` từ tệp `.env.example` và điền thông tin cần thiết (env có sẵn trong dự án).
 
-4. **Chạy Ứng Dụng:**
+5. **Chạy Ứng Dụng:**
+   Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
    ```bash
-   Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
    npm run start
+   ```
    Chuột phải vào thư mục src/Back chọn Open in integrated Terminal
+    ```bash
    npm run start
    ```
 
