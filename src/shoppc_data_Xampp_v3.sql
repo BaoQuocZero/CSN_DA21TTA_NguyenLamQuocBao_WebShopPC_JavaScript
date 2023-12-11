@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 01:43 PM
+-- Generation Time: Dec 09, 2023 at 10:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -34,14 +34,6 @@ CREATE TABLE `chitiethoadon` (
   `GiamGia` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `chitiethoadon`
---
-
-INSERT INTO `chitiethoadon` (`MaHD`, `MaSP`, `SoLuong`, `GiamGia`) VALUES
-(7, 25, 2, 1),
-(8, 22, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -54,17 +46,9 @@ CREATE TABLE `hoadon` (
   `MaNV` varchar(255) DEFAULT NULL,
   `DiaChiShip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SdtShip` varchar(10) DEFAULT NULL,
-  `NgayDatHang` datetime DEFAULT NULL,
+  `NgayDatHang` date DEFAULT NULL,
   `GhiChu` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `hoadon`
---
-
-INSERT INTO `hoadon` (`MaHD`, `MaKH`, `MaNV`, `DiaChiShip`, `SdtShip`, `NgayDatHang`, `GhiChu`) VALUES
-(7, 'QuocBaoKH1', 'QuocBaoNV1', 'Trà vinh', NULL, '2023-12-10 00:00:00', 'Dễ vỡ'),
-(8, 'QuocBaoKH1', 'QuocBaoNV1', 'Trà vinh', NULL, '2023-12-10 16:54:47', 'Không thể vỡ');
 
 -- --------------------------------------------------------
 
@@ -139,10 +123,10 @@ INSERT INTO `sanpham` (`MaSP`, `TenSP`, `MaTL`, `DonGiaSP`, `TonKhoSP`, `Chip`, 
 (19, 'PC GAMER CHOICE', 1, 15890000, 10, 'Intel Core I5 12400F', 'MSI B660M-K DDR4', 'OCPC RTX 2060 Super 8GB New', 'Shop PC', 'TeamGroup VulcanZ 16Gb (2x8)/(1x16) Bus 3200mhz', 'profile_pic-1701606596194.png'),
 (20, 'PC BEST FOR GAMING GTX 1660 Super I3 10105F', 1, 9990000, 10, 'Intel Core i3 10105F 3.7Ghz', 'GIGABYTE H410M DDR4 V2', 'VGA OCPC GTX 1660 Super 6GB New', 'Shop PC', 'RAM TEAMGROUP T-Force Vulcan Z 16GB (1x16GB)/(2x8Gb) DDR4 3200MHz', 'profile_pic-1701606602644.png'),
 (21, 'PC SUPER STAR GAMING 2K RTX 3070TI ROG 13400F', 1, 26880000, 10, 'Intel Core I5 13400F', 'Mainboard Asrock B660M Pro RS DDR4', 'ASUS RTX 3070TI ROG 8GB NEW', 'Shop PC', 'ADATA D50 RGB 16GB (2x8) Bus 3200Mhz', 'profile_pic-1701606608922.png'),
-(22, 'PC Republic Of Gamer ROG - EVANLEGION', 1, 148889000, 9, 'INTEL Core I9 13900KS', 'Mainboard Z790  HERO MAXIMUS EVANLEGION  DDR5', 'ROG Strix GeForce RTX™ 4090 24GB GDDR6X OC EVA-02 Edition', 'Shop PC', 'RAM DOMINATOR PLATIUM  64GB (16x4) DDR5 Bus 6200Mhz', 'profile_pic-1701606616285.png'),
+(22, 'PC Republic Of Gamer ROG - EVANLEGION', 1, 148889000, 10, 'INTEL Core I9 13900KS', 'Mainboard Z790  HERO MAXIMUS EVANLEGION  DDR5', 'ROG Strix GeForce RTX™ 4090 24GB GDDR6X OC EVA-02 Edition', 'Shop PC', 'RAM DOMINATOR PLATIUM  64GB (16x4) DDR5 Bus 6200Mhz', 'profile_pic-1701606616285.png'),
 (23, 'PC MAX PERFORMANCE RTX 3060TI 12400F', 1, 20690000, 10, 'Intel Core I5 12400F', 'Mainboard MSI B660M-E DDR4', 'MSI VENTUS RTX 3060TI 8GB NEW', 'Shop PC', 'TeamGroup VulcanZ 16Gb Bus 3200Mhz', 'profile_pic-1701606624469.png'),
 (24, 'Laptop Asus VivoBook Go 14 E1404FA-NK177W', 2, 12990000, 10, 'AMD Ryzen 5 7520U (4MB cache, up to 4.3 GHz, 4 lõi/8 luồng)', 'Mainboard', 'AMD Radeon Graphics', 'ASUS', '16GB', 'profile_pic-1701606632644.png'),
-(25, 'Apple MacBook Air M1 256GB 2020', 2, 18990000, 8, 'M1', 'Mainboard', 'GPU 8 nhân', 'Apple', '8GB', 'profile_pic-1701606642330.png'),
+(25, 'Apple MacBook Air M1 256GB 2020', 2, 18990000, 10, 'M1', 'Mainboard', 'GPU 8 nhân', 'Apple', '8GB', 'profile_pic-1701606642330.png'),
 (26, 'Laptop Lenovo Ideapad Slim 5 14IAH8 83BF002NVN', 2, 14990000, 10, 'Intel Core i5-12450H', 'Mainboard', 'Intel UHD Graphics', 'Lenovo', '16GB', 'profile_pic-1701606651740.png'),
 (27, 'Laptop Dell Inspirion 15 3511 PDP3H', 2, 13490000, 10, 'Intel Core i5-1135G7', 'Mainboard', 'Intel Iris Xe Graphics', 'Lenovo', '8GB', 'profile_pic-1701606662835.png'),
 (28, 'Laptop Gaming Acer Nitro 5 Eagle AN515-57-5669', 2, 16990000, 10, 'Intel Core i5-11400H', 'Mainboard', 'NVIDIA GeForce GTX 1650 4 GB GDDR6', 'Lenovo', '8GB', 'profile_pic-1701606721645.jpg'),
@@ -230,13 +214,13 @@ ALTER TABLE `theloai`
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `MaHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MaHD` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `theloai`
