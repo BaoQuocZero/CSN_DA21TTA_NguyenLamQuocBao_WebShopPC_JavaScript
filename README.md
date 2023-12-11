@@ -1,4 +1,4 @@
-# ĐỀ CƯƠNG THỰC TẬP ĐỒ ÁN - XÂY DỰNG WEBSITE BÁN MÁY TÍNH
+# XÂY DỰNG WEBSITE BÁN MÁY TÍNH
 
 ## KHOA KỸ THUẬT VÀ CÔNG NGHỆ
 ### BỘ MÔN CÔNG NGHỆ THÔNG TIN
