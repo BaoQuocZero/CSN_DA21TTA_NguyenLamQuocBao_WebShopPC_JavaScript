@@ -107,6 +107,44 @@ class ChiTietSanPham extends Component {
                         onChange={this.handleQuantityChange}
                       />
                     </div>
+
+                    <div>
+                      <table className="table_ChiTietSanPham">
+
+                        <tbody>
+                          <tr>
+                            <td colSpan="2"><b>Cấu hình chi tiết</b></td>
+                          </tr>
+
+                          <tr className="table_tr_ChiTietSanPham">
+                            <td><b>Chip</b></td>
+                            <td>{sanPham.Chip}</td>
+                          </tr>
+
+                          <tr className="table_tr_ChiTietSanPham">
+                            <td><b>Main</b></td>
+                            <td>{sanPham.Main}</td>
+                          </tr>
+
+                          <tr className="table_tr_ChiTietSanPham">
+                            <td><b>VGA</b></td>
+                            <td>{sanPham.VGA}</td>
+                          </tr>
+
+                          <tr className="table_tr_ChiTietSanPham">
+                            <td><b>Ram</b></td>
+                            <td>{sanPham.RAM}</td>
+                          </tr>
+
+                          <tr className="table_tr_ChiTietSanPham">
+                            <td><b>Tồn kho</b></td>
+                            <td>{sanPham.TonKhoSP}</td>
+                          </tr>
+                        </tbody>
+
+                      </table>
+                    </div>
+
                     <div className='product-h3_muahang_ChiTietSanPham'>
 
                       {sanPham.TonKhoSP > 0 && (

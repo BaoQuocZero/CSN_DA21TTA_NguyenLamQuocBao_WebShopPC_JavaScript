@@ -70,6 +70,19 @@ class MuaSanPham extends Component {
 
     handleAddChiTietHoaDon = (event) => {
         event.preventDefault();
+
+        // Kiểm tra xem thông tin giao hàng đã được nhập đầy đủ chưa
+        if (!this.state.SdtShip || !this.state.DiaChiShip) {
+            alert("Vui lòng nhập đầy đủ thông tin giao hàng!");
+            return;
+        }
+
+        // Kiểm tra xem một sản phẩm đã được chọn chưa
+        if (this.state.ChiTietHoaDon.length === 0) {
+            alert("Vui lòng chọn ít nhất một sản phẩm!");
+            return;
+        }
+
         this.setState((prevState) => {
             const updatedChiTietHoaDon = prevState.ChiTietHoaDon.map((item) => ({
                 ...item,
@@ -192,7 +205,7 @@ class MuaSanPham extends Component {
                                                 onChange={(e) => this.setState({ GhiChu: e.target.value })}
                                             />
                                         </label>
-                                        <p className='thanhtoan'>Hình thức thanh toán tại nhà</p>
+                                        <p className='thanhtoan'>Hình thức thanh toán khi nhân hàng</p>
                                     </div>
                                 </div>
 
@@ -206,7 +219,6 @@ class MuaSanPham extends Component {
                                             <span className='sanpham-name'>{sanPham.TenSP}</span>
                                         </div>
 
-                                        <hr></hr>
                                         <label className="muahang-magiamgia1">
 
                                             <input
@@ -218,7 +230,7 @@ class MuaSanPham extends Component {
                                             />
                                             <button className='muahang-xacnhan' onClick={() => this.btnGiamGia()}>Sử Dụng</button>
                                         </label>
-                                        <hr></hr>
+
                                         <div className='muahang-tamtinh'>  <span className='muahang-tamtinh1'>Tạm tính</span>
 
                                             {sanPham.DonGiaSP ? (
@@ -228,14 +240,14 @@ class MuaSanPham extends Component {
                                             )}
                                         </div>
                                         <div className='muahang-phivanchuyen'>
-                                            <span>Phí vận chuyển</span>
-                                            <span className='muahang-phivanchuyen1'>0 VND</span>
+                                            <span className='muahang-phivanchuyen-label'>Phí vận chuyển và lấp gáp: </span>
+                                            <span className='muahang-phivanchuyen-value'>{(sanPham.DonGiaSP * 0.01).toLocaleString()} VND</span>
                                         </div>
                                         <hr></hr>
                                         <div className='muahang-tongcong'>
                                             <span>Tổng cộng</span>
                                             {sanPham.DonGiaSP ? (
-                                                <span className='sanpham-price'>{sanPham.DonGiaSP.toLocaleString()} VND</span>
+                                                <span className='sanpham-price'>{(sanPham.DonGiaSP + (sanPham.DonGiaSP * 0.01)).toLocaleString()} VND</span>
                                             ) : (
                                                 <span className='sanpham-price'>Giá không xác định</span>
                                             )}

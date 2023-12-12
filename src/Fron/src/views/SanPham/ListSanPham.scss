@@ -38,6 +38,12 @@ ul.products li img {
     height: auto;
 }
 
+.product-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 ul.products li .product-top a.mua {
     text-transform: uppercase;
     text-decoration: none;

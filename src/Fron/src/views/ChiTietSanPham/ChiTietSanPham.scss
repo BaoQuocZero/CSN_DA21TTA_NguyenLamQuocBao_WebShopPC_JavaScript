@@ -1,7 +1,7 @@
 .container_ChiTietSanPham {
     width: 100%;
-    height: 500px;
-    margin-top: 10%;
+    height: 650px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,6 +44,12 @@
 .product-image_ChiTietSanPham {
     width: 50%;
     height: 500px;
+}
+
+.image_ChiTietSanPham {
+    width: 100%;
+    height: 10%;
+    object-fit: contain;
 }
 
 .product-image_banner_ChiTietSanPham {
@@ -90,7 +96,7 @@
     width: 100%;
     height: auto;
     display: flex;
-
+    padding: 10px 0px;
 }
 
 .purchase-button_ChiTietSanPham {
@@ -131,4 +137,33 @@
 .Con_Het_ChiTietSanPham {
     font-weight: bold;
     color: darkblue;
+}
+
+.table_ChiTietSanPham {
+    width: 100%;
+    /* Đặt chiều rộng của bảng là 100% */
+    border-collapse: collapse;
+    /* Gộp đường biên */
+}
+
+.table_ChiTietSanPham td {
+    padding: 8px;
+    /* Thêm padding cho ô */
+    border: 1px solid #ddd;
+    /* Thêm đường biên cho ô */
+}
+
+.table_ChiTietSanPham td:first-child {
+    font-weight: bold;
+    /* In đậm cho ô đầu tiên */
+}
+
+/* Thêm kiểu cho các hàng chẵn và lẻ (nếu cần) */
+.table_ChiTietSanPham tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table_ChiTietSanPham tr:hover {
+    background-color: #ddd;
+    /* Màu nền khi hover trên hàng */
 }
