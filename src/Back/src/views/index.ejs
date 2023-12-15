@@ -39,7 +39,7 @@
                     <form action="/Tim" enctype="multipart/form-data" method="POST">
                         <tr>
                             <td>
-                                <p>??</p>
+                                <p>0</p>
                             </td>
                             <td>
                                 <input type="text" class="input_Tim" name="TimTenSP" placeholder="Tìm tên">
@@ -100,7 +100,7 @@
                                 <%= SanPham[i].TenTL %>
                             </td>
                             <td>
-                                <%= SanPham[i].DonGiaSP %>
+                                <%= (SanPham[i].DonGiaSP).toLocaleString() %> VND
                             </td>
                             <td>
                                 <%= SanPham[i].TonKhoSP %>

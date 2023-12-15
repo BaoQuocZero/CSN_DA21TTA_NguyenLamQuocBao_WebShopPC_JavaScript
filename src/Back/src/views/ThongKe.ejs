@@ -26,7 +26,7 @@
                         <th>Hãng</th>
                         <th>Khách hàng</th>
                         <th>Số lượng</th>
-                        <th>Đơn giá</th>
+                        <th>Tổng giá</th>
                         <th>Ngày đặt</th>
                     </tr>
                 </thead>
@@ -46,7 +46,8 @@
                                 <%= SanPham[i].SoLuong %>
                             </td>
                             <td>
-                                <%= SanPham[i].DonGiaSP.toLocaleString() %> VND
+                                <%= ((SanPham[i].DonGiaSP * SanPham[i].SoLuong) + (SanPham[i].DonGiaSP * 0.01) *
+                                    SanPham[i].SoLuong).toLocaleString() %> VND
                             </td>
                             <td>
                                 <%= SanPham[i].FormattedNgayDatHang %>

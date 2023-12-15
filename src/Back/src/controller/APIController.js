@@ -95,6 +95,7 @@ let createHoaDon = async (req, res) => {
 
     try {
         const { MaKH, MaNV, DiaChiShip, NgayDatHang, GhiChu, ChiTietHoaDon } = req.body;
+        console.log(">>>Check: ", req.body)
 
         // Insert HoaDon
         const [result] = await pool.execute(`
