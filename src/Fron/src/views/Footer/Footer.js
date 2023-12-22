@@ -59,7 +59,7 @@ class Footer extends Component {
         <div className="container_Footer">
           <div className="row_Footer">
             <div className="col-md-8 col-sm-6 col-xs-12">
-              <p className="copyright-text_Footer">Copyright &copy; 2017 All Rights Reserved by
+              <p className="copyright-text_Footer">Copyright &copy; 2023 All Rights Reserved by
                 <a href="https://www.facebook.com/quocbao.nguyenlam.1/">Quốc Bảo</a>.
               </p>
             </div>
