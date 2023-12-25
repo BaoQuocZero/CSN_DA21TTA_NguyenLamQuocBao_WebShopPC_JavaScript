@@ -3,6 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { withRouter } from 'react-router-dom';
 
+import logo from "./ICON.ico"
+import desktop from "./DESKTOP.ico"
+import apple from "./APPLE.ico"
+import asus from "./ASUS.ico"
+
 import './Nav2.scss'
 
 class Nav2 extends Component {
@@ -76,12 +81,15 @@ class Nav2 extends Component {
                 <div className='nav_Nav2'>
                     <div className='isOpen_Nav2'>
                         <a className='image-navbar_Nav2' onClick={this.handleViewHomePage}>
-                            ShopPC
+                            <div className='image_Nav2'>
+                                <img src={logo} alt="ShopPC Logo" />
+                                <span>ShopPC</span>
+                            </div>
                         </a>
                         <div className="ml-auto_Nav2" >
-                            <a onClick={this.handleViewDesktop} className='nav-item_Nav2 nav-item1_Nav2'>Desktop</a>
-                            <a onClick={this.handleViewApple} className='nav-item_Nav2 nav-item2_Nav2'>Apple</a>
-                            <a onClick={this.handleViewASUS} className='nav-item_Nav2'>ASUS</a>
+                            <a onClick={this.handleViewDesktop} className='nav-item_Nav2 nav-item1_Nav2'><img src={desktop} alt="Desktop logo" /><span>Desktop</span></a>
+                            <a onClick={this.handleViewApple} className='nav-item_Nav2 nav-item2_Nav2'><img src={apple} alt="Desktop logo" /><span>Apple</span></a>
+                            <a onClick={this.handleViewASUS} className='nav-item_Nav2'><img src={asus} alt="Desktop logo" /><span>ASUS</span></a>
                             <a onClick={this.handleViewAll} className='nav-item_Nav2 nav-item4_Nav2'>Tất Cả</a>
                         </div>
                         <div className='cart-div_Nav2'>

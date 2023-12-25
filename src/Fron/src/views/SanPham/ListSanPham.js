@@ -15,6 +15,7 @@ class ListSanPham extends React.Component {
             error: null,
             searchTerm: "",
             priceFilter: "", // Thêm state để lưu trữ giá trị của nút radio
+            sortOrder: "asc", // Mặc định sắp xếp từ nhỏ đến lớn
         };
     }
 
@@ -62,6 +63,11 @@ class ListSanPham extends React.Component {
         this.setState({ priceFilter: value });
     };
 
+    handleSortChange = () => {
+        const newSortOrder = this.state.sortOrder === "asc" ? "desc" : "asc";
+        this.setState({ sortOrder: newSortOrder });
+    };
+
     render() {
         const { data, loading, error, searchTerm, priceFilter } = this.state;
 
@@ -83,6 +89,14 @@ class ListSanPham extends React.Component {
                                     ? item.DonGiaSP > 20000000
                                     : true
                 );
+        // Sắp xếp dữ liệu
+        const sortedData =
+            filteredData &&
+            filteredData.length > 0 &&
+            filteredData.sort((a, b) => {
+                const order = this.state.sortOrder === "asc" ? 1 : -1;
+                return order * (a.DonGiaSP - b.DonGiaSP);
+            });
         return (
             <>
                 <div className="relative">
@@ -146,12 +160,40 @@ class ListSanPham extends React.Component {
                                     Trên 20 triệu
                                     <span className="checkmark"></span>
                                 </label>
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="asc"
+                                        checked={priceFilter === "0" && this.state.sortOrder === "asc"} // Thêm "this."
+                                        onChange={() => {
+                                            this.handlePriceFilterChange("0");
+                                            this.handleSortChange();
+                                        }}
+                                    />
+                                    Giá tăng dần
+                                    <span className="checkmark"></span>
+                                </label>
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="desc"
+                                        checked={priceFilter === "0" && this.state.sortOrder === "desc"} // Thêm "this."
+                                        onChange={() => {
+                                            this.handlePriceFilterChange("0");
+                                            this.handleSortChange();
+                                        }}
+                                    />
+                                    Giá giảm dần
+                                    <span className="checkmark"></span>
+                                </label>
                             </div>
                         </div>
 
                         <ul className="products">
-                            {filteredData && filteredData.length > 0 &&
-                                filteredData.map((item, index) => (
+                            {sortedData && sortedData.length > 0 &&
+                                sortedData.map((item, index) => (
                                     <li key={index}>
                                         <div className="product-top">
                                             <a onClick={() => this.handleViewSanPham(item)} className="product-thumb">

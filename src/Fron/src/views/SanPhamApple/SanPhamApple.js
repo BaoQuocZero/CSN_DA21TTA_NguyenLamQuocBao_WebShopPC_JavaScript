@@ -64,6 +64,11 @@ class SanPhamApple extends React.Component {
         this.setState({ priceFilter: value });
     };
 
+    handleSortChange = () => {
+        const newSortOrder = this.state.sortOrder === "asc" ? "desc" : "asc";
+        this.setState({ sortOrder: newSortOrder });
+    };
+
     render() {
         const { data, loading, error, searchTerm, priceFilter } = this.state;
 
@@ -85,12 +90,21 @@ class SanPhamApple extends React.Component {
                                     ? item.DonGiaSP > 20000000
                                     : true
                 );
+        // Sắp xếp dữ liệu
+        const sortedData =
+            filteredData &&
+            filteredData.length > 0 &&
+            filteredData.sort((a, b) => {
+                const order = this.state.sortOrder === "asc" ? 1 : -1;
+                return order * (a.DonGiaSP - b.DonGiaSP);
+            });
         return (
             <>
                 <Nav2 />
                 <div className="relative">
                     <div className="container-bottom">
-                        <div className="tieude"><h1>Danh Sách Sản Phẩm Apple</h1></div>
+                        <div className="tieude"><h1>Danh Sách Apple</h1></div>
+
                         <div className="Searchfillter">
                             <div className="container_TimKiem">
                                 <label className="TimKiem_label"><b>Tìm kiếm</b></label>
@@ -148,11 +162,40 @@ class SanPhamApple extends React.Component {
                                     Trên 20 triệu
                                     <span className="checkmark"></span>
                                 </label>
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="asc"
+                                        checked={priceFilter === "0" && this.state.sortOrder === "asc"} // Thêm "this."
+                                        onChange={() => {
+                                            this.handlePriceFilterChange("0");
+                                            this.handleSortChange();
+                                        }}
+                                    />
+                                    Giá tăng dần
+                                    <span className="checkmark"></span>
+                                </label>
+                                <label className="container_InputRadio_TimKiem">
+                                    <input
+                                        type="radio"
+                                        name="priceFilter"
+                                        value="desc"
+                                        checked={priceFilter === "0" && this.state.sortOrder === "desc"} // Thêm "this."
+                                        onChange={() => {
+                                            this.handlePriceFilterChange("0");
+                                            this.handleSortChange();
+                                        }}
+                                    />
+                                    Giá giảm dần
+                                    <span className="checkmark"></span>
+                                </label>
                             </div>
                         </div>
+
                         <ul className="products">
-                            {filteredData && filteredData.length > 0 &&
-                                filteredData.map((item, index) => (
+                            {sortedData && sortedData.length > 0 &&
+                                sortedData.map((item, index) => (
                                     <li key={index}>
                                         <div className="product-top">
                                             <a onClick={() => this.handleViewSanPham(item)} className="product-thumb">
@@ -177,7 +220,6 @@ class SanPhamApple extends React.Component {
                         </ul>
                     </div>
                 </div>
-                <Footer />
             </>
         );
     }

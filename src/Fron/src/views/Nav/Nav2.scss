@@ -57,6 +57,12 @@
     margin-left: 13%;
 }
 
+.ml-auto_Nav2 img {
+    max-width: 30%;
+    height: auto;
+    margin-right: 1px;
+}
+
 .nav-item-hover_Nav2:hover {
     filter: brightness(10%);
 }
@@ -77,8 +83,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 7%;
-    font-size: 20px;
+    margin-left: 10%;
+    font-size: 16px;
 }
 
 .image-div_Nav2 {
@@ -123,4 +129,16 @@
         font-size: 15px;
         margin-top: 2px;
     }
+}
+
+// In your CSS file
+.image_Nav2 {
+    display: flex;
+    align-items: center;
+}
+
+.image_Nav2 img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 10px;
 }
