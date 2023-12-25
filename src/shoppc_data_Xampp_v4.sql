@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 25, 2023 lúc 01:32 PM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Host: 127.0.0.1
+-- Generation Time: Dec 11, 2023 at 01:43 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `shoppc_data`
+-- Database: `shoppc_data`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitiethoadon`
+-- Table structure for table `chitiethoadon`
 --
 
 CREATE TABLE `chitiethoadon` (
@@ -35,7 +35,7 @@ CREATE TABLE `chitiethoadon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `chitiethoadon`
+-- Dumping data for table `chitiethoadon`
 --
 
 INSERT INTO `chitiethoadon` (`MaHD`, `MaSP`, `SoLuong`, `GiamGia`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `chitiethoadon` (`MaHD`, `MaSP`, `SoLuong`, `GiamGia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hoadon`
+-- Table structure for table `hoadon`
 --
 
 CREATE TABLE `hoadon` (
@@ -59,7 +59,7 @@ CREATE TABLE `hoadon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hoadon`
+-- Dumping data for table `hoadon`
 --
 
 INSERT INTO `hoadon` (`MaHD`, `MaKH`, `MaNV`, `DiaChiShip`, `SdtShip`, `NgayDatHang`, `GhiChu`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `hoadon` (`MaHD`, `MaKH`, `MaNV`, `DiaChiShip`, `SdtShip`, `NgayDatH
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khachhang`
+-- Table structure for table `khachhang`
 --
 
 CREATE TABLE `khachhang` (
@@ -81,7 +81,7 @@ CREATE TABLE `khachhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `khachhang`
+-- Dumping data for table `khachhang`
 --
 
 INSERT INTO `khachhang` (`MaKH`, `PassKH`, `TenLienHe`, `DiaChi`, `Sdt`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `khachhang` (`MaKH`, `PassKH`, `TenLienHe`, `DiaChi`, `Sdt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhanvien`
+-- Table structure for table `nhanvien`
 --
 
 CREATE TABLE `nhanvien` (
@@ -105,7 +105,7 @@ CREATE TABLE `nhanvien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `nhanvien`
+-- Dumping data for table `nhanvien`
 --
 
 INSERT INTO `nhanvien` (`MaNV`, `PassNV`, `HoLotNV`, `TenNV`, `DiaChiNV`, `SdtNV`, `AnhNV`, `GhiChu`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `nhanvien` (`MaNV`, `PassNV`, `HoLotNV`, `TenNV`, `DiaChiNV`, `SdtNV
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -132,7 +132,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`MaSP`, `TenSP`, `MaTL`, `DonGiaSP`, `TonKhoSP`, `Chip`, `Main`, `VGA`, `NhanSanXuat`, `RAM`, `AnhSP`) VALUES
@@ -160,30 +160,12 @@ INSERT INTO `sanpham` (`MaSP`, `TenSP`, `MaTL`, `DonGiaSP`, `TonKhoSP`, `Chip`, 
 (44, 'PC MINI WHITE SPACE GAMING PRO', 1, 27888000, 10, 'CPU Intel Core I5 13400F', 'Mainboard Colorful CVN B760I FROZEN WIFI V20', 'VGA ASUS RTX 3060 12Gb Dual Mini 2Fan', 'Shop PC', 'ADATA D50 16GB (2x8) Bus 3200Mhz White DDR4', 'profile_pic-1702105295789.webp'),
 (45, 'PC PRO GAMING', 1, 21680000, 10, 'Intel Core i5 12400F', 'Mainboard ASUS B760M-K DDR4', 'VGA ASUS ROG Strix GeForce RTX 3070 Ti OC 8GB GDDR6X', 'Shop PC', 'ADATA D50 16Gb (2x8) Bus 3200mhz', 'profile_pic-1702105387845.webp'),
 (46, 'PC ADOBE - Worksation 3D Visualization', 1, 29990000, 10, 'Intel Core i7 13700K', 'AORUS Z690M ELITE DDR4', 'VGA ZOTAC GAMING GeForce RTX 4060 8GB Twin Edge OC', 'Shop PC', 'TeamGroup VulcanZ 32GB (2x16) Bus 3200Mhz', 'profile_pic-1702105482068.webp'),
-(47, 'PC ADOBE - Workstation 2D 3D EDITING', 1, 25980000, 10, 'Intel Core i7 13700K', 'AORUS Z690M ELITE DDR4', 'VGA NVIDIA OCPC GTX 1660 Super 6GB GDDR6', 'Shop PC', 'TeamGroup VulcanZ 32GB (2x16) Bus 3200Mhz', 'profile_pic-1702105570898.webp'),
-(49, 'Apple Macbook Pro 13 M2 2022', 2, 29990000, 99, 'M2', 'Mainboard', '10 nhân GPU', 'Apple', '8GB', 'profile_pic-1703500527993.webp'),
-(50, 'Apple Macbook Air M2 2022', 2, 31990000, 99, 'M2', 'Mainboard', '8 nhân GPU, 16 nhân Neural Engine', 'Apple', '16GB', 'profile_pic-1703500786584.webp'),
-(51, 'Apple MacBook Pro 13 M2 2022 16GB 256GB', 2, 35390000, 99, 'M2', 'Mainboard', '10 nhân GPU', 'Apple', '16GB', 'profile_pic-1703500947550.webp'),
-(52, 'Apple Macbook Air M2 2022 8GB 256GB', 2, 25990000, 99, 'M2', 'Mainboard', '8 nhân GPU, 16 nhân Neural Engine', 'Apple', '8GB', 'profile_pic-1703501070333.png'),
-(53, 'Macbook Pro 14 M3 Pro 18GB - 512GB', 2, 49990000, 99, 'm3', 'Mainboard', '14 nhân Neural Engine 16 nhân', 'Apple', '18GB', 'profile_pic-1703501355998.webp'),
-(54, 'Macbook Pro 14 M1 Pro 10 CPU - 16 GPU 16GB 1TB 2021', 2, 44490000, 99, 'M1', 'Mainboard', '16 GPU', 'Apple', '16GB', 'profile_pic-1703501440458.webp'),
-(55, 'MacBook Air 15 inch M2 2023 16GB 256GB', 2, 36290000, 99, 'M2', 'Mainboard', 'Card tích hợp - 10 nhân GPU', 'Apple', '16GB', 'profile_pic-1703501560870.webp'),
-(56, 'Macbook Air 15 inch M2 2023 8GB 256GB', 2, 30190000, 99, 'M2', 'Mainboard', '10 nhân GPU', 'Apple', '8GB', 'profile_pic-1703501654701.webp'),
-(57, 'Mac mini M2 2023 (8 CPU - 10 GPU - 8GB - 256GB)', 2, 14990000, 99, 'M2', 'Mainboard', '10 nhân GPU', 'Apple', '8GB', 'profile_pic-1703501730310.webp'),
-(58, 'Laptop Asus VivoBook 15 OLED A1505VA-L1114W', 2, 16940000, 99, 'Intel Core i5-13500H', 'Mainboard', 'Intel Iris Xe Graphics', 'ASUS', '16GB', 'profile_pic-1703502898125.webp'),
-(59, 'Laptop Asus TUF GAMING F15 FX506HF-HN014W', 2, 16940000, 99, ' Intel Core i5-11400H', 'Mainboard', 'NVIDIA GeForce RTX 2050 4GB', 'ASUS', '8GB', 'profile_pic-1703502983796.webp'),
-(60, 'Laptop Asus Vivobook 15 OLED A1505ZA-L1245W', 2, 14790000, 99, ' Intel Core i5-12500H', 'Mainboard', 'Intel UHD Graphics', 'ASUS', '8GB', 'profile_pic-1703503098562.webp'),
-(61, 'Laptop Asus VivoBook 14X OLED S3405VA-KM071W', 2, 22340000, 99, ' Intel Core i9-13900H', 'Mainboard', 'Intel Iris Xe Graphics', 'ASUS', '16GB', 'profile_pic-1703503209168.webp'),
-(62, 'Laptop Asus VivoBook Go 14 E1404FA-NK113W', 2, 8940000, 99, ' AMD Ryzen 3 7320U', 'Mainboard', 'AMD Radeon Graphics', 'ASUS', '8GB', 'profile_pic-1703503306110.webp'),
-(63, 'Laptop Asus Vivobook GO 15 E1504FA-NJ454W', 2, 12990000, 99, ' AMD Ryzen 5 7520U', 'Mainboard', 'AMD Radeon Graphics', 'ASUS', '16GB', 'profile_pic-1703503837285.webp'),
-(64, 'Laptop Asus VivoBook S 14 FLIP TP3402VA-LZ118W', 2, 23240000, 88, ' Intel Core i9-13900H', 'Mainboard', 'Intel UHD Graphics', 'ASUS', '16GB', 'profile_pic-1703503915315.webp'),
-(65, 'Laptop Asus VivoBook 15 X1504VA-NJ070W', 2, 15440000, 33, ' Intel Core i5-1335U', 'Mainboard', 'Intel Iris Xe Graphics', 'ASUS', '16GB', 'profile_pic-1703504007459.webp'),
-(66, 'Laptop Asus VivoBook 14 OLED A1405VA-KM095W', 2, 16940000, 99, ' Intel Core i5-13500H', 'Mainboard', 'Intel Iris Xe Graphics', 'ASUS', '16GB', 'profile_pic-1703504297565.webp');
+(47, 'PC ADOBE - Workstation 2D 3D EDITING', 1, 25980000, 10, 'Intel Core i7 13700K', 'AORUS Z690M ELITE DDR4', 'VGA NVIDIA OCPC GTX 1660 Super 6GB GDDR6', 'Shop PC', 'TeamGroup VulcanZ 32GB (2x16) Bus 3200Mhz', 'profile_pic-1702105570898.webp');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `theloai`
+-- Table structure for table `theloai`
 --
 
 CREATE TABLE `theloai` (
@@ -193,7 +175,7 @@ CREATE TABLE `theloai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `theloai`
+-- Dumping data for table `theloai`
 --
 
 INSERT INTO `theloai` (`MaTL`, `TenTL`, `MoTaTL`) VALUES
@@ -201,63 +183,63 @@ INSERT INTO `theloai` (`MaTL`, `TenTL`, `MoTaTL`) VALUES
 (2, 'Laptop', 'Một laptop là một thiết bị máy tính di động nhẹ và tiện ích, thường có màn hình tích hợp, bàn phím, và touchpad hoặc chuột. Nó chứa các thành phần chính như bộ xử lý (CPU), bộ nhớ (RAM), ổ cứng lưu trữ, card đồ họa, và pin để cung cấp năng lượng di động. Laptop thường chạy các hệ điều hành như Windows, macOS hoặc Linux. Với thiết kế di động, laptop là lựa chọn phổ biến cho công việc di động, học tập, giải trí, và công việc văn phòng.');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `chitiethoadon`
+-- Indexes for table `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
   ADD PRIMARY KEY (`MaHD`,`MaSP`);
 
 --
--- Chỉ mục cho bảng `hoadon`
+-- Indexes for table `hoadon`
 --
 ALTER TABLE `hoadon`
   ADD PRIMARY KEY (`MaHD`);
 
 --
--- Chỉ mục cho bảng `khachhang`
+-- Indexes for table `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`MaKH`);
 
 --
--- Chỉ mục cho bảng `nhanvien`
+-- Indexes for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MaNV`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`MaSP`);
 
 --
--- Chỉ mục cho bảng `theloai`
+-- Indexes for table `theloai`
 --
 ALTER TABLE `theloai`
   ADD PRIMARY KEY (`MaTL`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `hoadon`
+-- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
   MODIFY `MaHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT cho bảng `theloai`
+-- AUTO_INCREMENT for table `theloai`
 --
 ALTER TABLE `theloai`
   MODIFY `MaTL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
