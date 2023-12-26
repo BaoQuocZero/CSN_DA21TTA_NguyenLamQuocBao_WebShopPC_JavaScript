@@ -228,7 +228,7 @@ class MuaSanPham extends Component {
                                                 // onChange={(e) => this.handleInputChange(e, index)}
                                                 className="muahang-magiamhgia" placeholder='Mã giảm giá (nếu có)'
                                             />
-                                            <button className='muahang-xacnhan' onClick={() => this.btnGiamGia()}>Sử Dụng</button>
+                                            <button type="button" className='muahang-xacnhan' onClick={() => this.btnGiamGia()}>Sử Dụng</button>
                                         </label>
 
                                         <div className='muahang-tamtinh'>  <span className='muahang-tamtinh1'>Tạm tính</span>
