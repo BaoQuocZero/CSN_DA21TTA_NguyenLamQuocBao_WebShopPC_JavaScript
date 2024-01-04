@@ -10,7 +10,7 @@ require('dotenv').config();
 const app = express()
 const port = process.env.PORT || 8081;
 
-const cors = require("cors");
+const cors = require('cors');
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 // const cors = require('cors');
