@@ -247,7 +247,7 @@ class MuaSanPham extends Component {
                                         <div className='muahang-tongcong'>
                                             <span>Tổng cộng</span>
                                             {sanPham.DonGiaSP ? (
-                                                <span className='sanpham-price'>{(sanPham.DonGiaSP + (sanPham.DonGiaSP * 0.01)).toLocaleString()} VND</span>
+                                                <span className='sanpham-price'>{((sanPham.DonGiaSP * soLuong) + ((sanPham.DonGiaSP * soLuong) * 0.01)).toLocaleString()} VND</span>
                                             ) : (
                                                 <span className='sanpham-price'>Giá không xác định</span>
                                             )}
