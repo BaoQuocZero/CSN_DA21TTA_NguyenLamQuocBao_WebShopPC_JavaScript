@@ -51,7 +51,6 @@
 | 4    | 18/12-24/12/2023 | - Thiết kế giao diện <br> - Lập trình <br> - Viết báo cáo đồ án | Nguyễn Lâm Quốc Bảo |
 | Kết thúc | 25/12-31/12/2023 | - Hoàn chỉnh website <br> - Hoàn chỉnh quyển báo cáo <br> - Nộp quyển báo cáo, website | Nguyễn Lâm Quốc Bảo |
 
-Tệp README là nơi bạn cung cấp thông tin chi tiết và hướng dẫn về cách cài đặt và chạy một dự án Node.js của bạn. Dưới đây là một mô hình README cơ bản:
 
 ## Hướng dẫn cài đặt dự án
 Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
